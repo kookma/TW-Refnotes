@@ -3,6 +3,8 @@ Refnotes is a set of macros and stylesheets for creating abbreviation, footnote 
 
 # Installation
 Simply download and import the below tiddler into your wiki
+
+
 [Refnotes plugin](https://github.com/kookma/Refnotes/blob/master/release/%24__plugins_.mr_refnotes.tid).
 
 # Tutorial and demo
