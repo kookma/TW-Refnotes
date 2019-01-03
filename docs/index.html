@@ -241,8 +241,6 @@ Error message and password prompt
 
 <li>$:/state/editpreviewtype</li>
 
-<li>$:/state/folded/Refnotes Plugin</li>
-
 <li>$:/state/MyState-686262240</li>
 
 <li>$:/state/showeditpreview</li>
@@ -628,8 +626,6 @@ Error message and password prompt
 <li>macro/bibtex</li>
 
 <li>macro/dev-find</li>
-
-<li>macro/find</li>
 
 <li>macro/footnote</li>
 
@@ -9704,141 +9700,178 @@ $:/config/PageControlButtons/Visibility/$(listItem)$
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
-<div author="Mohammad Rahmani" core-version="5.1.18" description="Refnotes" list="readme usage license" plugin-type="plugin" title="$:/plugins/.mr/refnotes" type="application/json" version="0.9.8">
+<div core-version="5.1.18" description="Refnotes" list="readme usage license" plugin-type="plugin" title="$:/plugins/.mr/refnotes" type="application/json" version="0.1.1">
 <pre>{
     &quot;tiddlers&quot;: {
+        &quot;Bibtex Naming Rules&quot;: {
+            &quot;text&quot;: &quot;As the `ref` macro uses the title (or caption) of tiddler contains bibliography data (in bibtex format), It is recommended to use a meaningful caption or title for reference tiddlers.\n\n* Create bibtex tiddler by importing the bibtex files\n* Name your tiddler as below\n** use two parts name\n** first part is the family name of first author in lowercase\n** use a dash followed by publication year\n** if an author has several publication in the same year use a, b, and c as suffix\n* Example\n** [leal-2018]\n** [rahmani-2017a] and [rahmani-2017b]\n\n!! Note\nWhen bulk of references are imported from `.bib` file it is difficult to change the title. The recommendation is to add a caption field and follow the above instruction for naming tiddler.\n&quot;,
+            &quot;title&quot;: &quot;Bibtex Naming Rules&quot;,
+            &quot;tags&quot;: &quot;refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225249971&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20181213220224586&quot;
+        },
+        &quot;Bibtex Standard File Format&quot;: {
+            &quot;text&quot;: &quot;! Standard bibtex file format\n\nFor bibtex file format take a look at the below references:\n\n!!! References\n|table-borderless|k\n|The main page |http://www.bibtex.org/ |\n|Style and format |https://www.reed.edu/cis/help/LaTeX/bibtexstyles.html |\n|Bibtex style example |https://verbosus.com/bibtex-style-examples.html |\n|Other references | |\n||https://www2.cs.arizona.edu/~collberg/Teaching/07.231/BibTeX/bibtex.html|\n||https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#BibTeX|\n\n\n!!! Citation style\n# https://pitt.libguides.com/citationhelp\n# https://en.wikipedia.org/wiki/Citation&quot;,
+            &quot;title&quot;: &quot;Bibtex Standard File Format&quot;,
+            &quot;tags&quot;: &quot;refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225249972&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20181220194607763&quot;
+        },
+        &quot;bibtex/button/set-tags&quot;: {
+            &quot;text&quot;: &quot;! Set-tags utility\n\nThis code adds the `bibtex-entry` tag to all tiddlers imported by `BibTeX` plugin thus having a `bibtex-title` field.\n\n!! List tiddlers\nAll tiddlers having `bibtex-title` field.\n\n&gt;&lt;ol&gt;\n&lt;$list filter=\&quot;[has[bibtex-title]]\&quot; variable=\&quot;v\&quot;&gt;\n&lt;li&gt;&lt;&lt;v&gt;&gt;&lt;/li&gt;\n&lt;/$list&gt;\n&lt;/ol&gt;\n\n---\n\n\n&lt;$button&gt; Add the \&quot;bibtex-entry\&quot; tag \n&lt;$list filter=\&quot;[has[bibtex-title]]\&quot;&gt;\n&lt;$fieldmangler&gt;\n&lt;$action-sendmessage $message=\&quot;tm-add-tag\&quot; $param=\&quot;bibtex-entry\&quot; /&gt;\n&lt;/$fieldmangler&gt;\n&lt;/$list&gt;\n&lt;/$button&gt;\n\n&quot;,
+            &quot;title&quot;: &quot;bibtex/button/set-tags&quot;,
+            &quot;tags&quot;: &quot;refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225249972&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20181220153648454&quot;
+        },
+        &quot;macro/abbr&quot;: {
+            &quot;text&quot;: &quot;\\define abbr(term:\&quot;\&quot;, dict:\&quot;Glossary\&quot;)\n&lt;$set name=\&quot;abbreviation\&quot; \n tiddler=\&quot;\&quot;\&quot;$dict$\&quot;\&quot;\&quot;\n index=\&quot;\&quot;\&quot;$term$\&quot;\&quot;\&quot;\n emptyValue=\&quot;Term not found\&quot;&gt;\n &lt;abbr title=&lt;&lt;abbreviation&gt;&gt; &gt;$term$&lt;/abbr&gt;\n&lt;/$set&gt;\n\\end\n\n\n\\define abbr-list(indexes, dtiddler:\&quot;\&quot; title:\&quot;Empty\&quot;)\n&lt;$reveal tag=\&quot;div\&quot; type=\&quot;nomatch\&quot; default=\&quot;Empty\&quot; text=&lt;&lt;__title__&gt;&gt; &gt;\n&lt;h2&gt;$title$&lt;/h2&gt;\n&lt;/$reveal&gt;\n&lt;table class=\&quot;table-borderless\&quot;&gt;\n&lt;$list filter=\&quot;\&quot;\&quot;$indexes$ +[sort[title]]\&quot;\&quot;\&quot; variable=\&quot;item\&quot;&gt;\n&lt;tr&gt;\n&lt;td style=\&quot;color:blue;\&quot;&gt;&lt;&lt;item&gt;&gt;&lt;/td&gt;\n&lt;td&gt;\n &lt;$set name=\&quot;term\&quot; tiddler=\&quot;\&quot;\&quot;$dtiddler$\&quot;\&quot;\&quot;  index=&lt;&lt;item&gt;&gt;  emptyValue=\&quot;//Term not found//\&quot;&gt;\n &lt;&lt;term&gt;&gt;\n &lt;/$set&gt;\n&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/$list&gt;\n&lt;/table&gt;\n\\end\n\n\n\\define output-item(p)\n&lt;$set name=\&quot;items\&quot; value=&lt;&lt;__p__&gt;&gt; &gt;\n&lt;$set name=\&quot;item\&quot; value={{{ [enlist&lt;items&gt;limit[1]] }}} &gt;\n&lt;$set name=\&quot;item-noquotes\&quot; value={{{ [&lt;item&gt;removeprefix[\&quot;]removesuffix[\&quot;]] [&lt;item&gt;removeprefix[']removesuffix[']] ~[&lt;item&gt;] }}} emptyValue=\&quot;NOT_FOUND\&quot;&gt;\n&lt;&lt;item-noquotes&gt;&gt;\n&lt;/$set&gt;\n&lt;/$set&gt;\n&lt;/$set&gt;\n\\end\n\n\n\\define showabbrs(filter:\&quot;[&lt;currentTiddler&gt;]\&quot;, dtiddler:\&quot;Glossary\&quot;, title:\&quot;Empty\&quot;)\n&lt;$wikify name=\&quot;term-indexes\&quot; text=\&quot;\&quot;\&quot;\n&lt;$set name=\&quot;dictionary\&quot; value=&lt;&lt;__dtiddler__&gt;&gt; &gt;\n&lt;$list filter=&lt;&lt;__filter__&gt;&gt; &gt;\n&lt;$macrocall $name=\&quot;find\&quot; text={{!!text}} begin=\&quot;&lt;&lt;abbr \&quot; end=\&quot;&gt;&gt;\&quot; output=\&quot;output-item\&quot;/&gt;\n&lt;/$list&gt;\n&lt;/$set&gt;\n\&quot;\&quot;\&quot;&gt; \n&lt;$macrocall $name=\&quot;abbr-list\&quot; indexes=&lt;&lt;term-indexes&gt;&gt; dtiddler=&lt;&lt;__dtiddler__&gt;&gt; title=&lt;&lt;__title__&gt;&gt; /&gt;\n&lt;/$wikify&gt;\n\\end\n\n! Summary\n* `abbr` inserts an abbreviation\n* `abbr-list` creates a glossary table from list of terms given through indexes parameter. The output is sorted alphabetically. This macro is normally called by `showabbrs`, but can be called directly to make a glossary table from a list of given terms.\n* `showabbrs` creates a glossary table from the abbreviation terms found in tiddlers text given by `filter` parameter. It uses two other macros to do the job.\n** `find`: to find the `&lt;&lt;abbr ....&gt;&gt;` occurrences\n** `output-item`:  to extract the abbreviation terms and remove the surrounding quotes\n** `abbr-list` to create the glossary table from the output of `find` macro\n\n! How showabbrs works?\nIt actually uses the find macro to find all occurrences of `&lt;&lt;abbr...&gt;&gt;` and uses `output-item` to extract then the glossary term and stores the result (a list of terms separated by space) in the variable `term-indexes`. This list then passed to `abbr-list` macro to be displayed as a glossary table. In facts `abbr-list` reads the definition of each term in `dtiddler` dictionary and displays the result as a table row.&quot;,
+            &quot;title&quot;: &quot;macro/abbr&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Macro refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225309670&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20181022071907838&quot;
+        },
+        &quot;macro/bibtex&quot;: {
+            &quot;text&quot;: &quot;\\define ref(tid)\n&lt;$set name=\&quot;ref-tid\&quot; tiddler=&lt;&lt;__tid__&gt;&gt; field=\&quot;title\&quot; emptyValue=\&quot;RefNotFound\&quot;&gt;\n&lt;div class=\&quot;mr-tooltip refcls\&quot;&gt;\n&lt;$reveal type=\&quot;match\&quot; default=&lt;&lt;ref-tid&gt;&gt; text=\&quot;RefNotFound\&quot;&gt;\n&lt;$link overrideClass=\&quot;link-refcls\&quot;&gt;\n[&lt;$view tiddler=&lt;&lt;__tid__&gt;&gt; field=\&quot;title\&quot;/&gt;]\n&lt;/$link&gt;\n&lt;div class=\&quot;mr-tooltiptext ref-notfound\&quot;&gt;&lt;b&gt;Warning&lt;/b&gt;: Reference Not Found.&lt;br&gt;Click to create it:&lt;&lt;create-notexisted-ref \&quot;$tid$\&quot;&gt;&gt;&lt;/div&gt;\n&lt;/$reveal&gt;\n&lt;$reveal type=\&quot;nomatch\&quot; default=&lt;&lt;ref-tid&gt;&gt; text=\&quot;RefNotFound\&quot;&gt;\n&lt;$link overrideClass=\&quot;link-refcls\&quot; to=\&quot;\&quot;\&quot;$tid$\&quot;\&quot;\&quot;&gt;\n[&lt;$view tiddler=&lt;&lt;__tid__&gt;&gt; field=\&quot;caption\&quot;&gt;\n &lt;$view tiddler=&lt;&lt;__tid__&gt;&gt; field=\&quot;title\&quot;&gt;&lt;/$view&gt;\n&lt;/$view&gt;]\n&lt;/$link&gt;\n&lt;div class=\&quot;mr-tooltiptext\&quot;&gt;\n&lt;span class=\&quot;ref-author\&quot;&gt;&lt;$view tiddler=&lt;&lt;ref-tid&gt;&gt; field=\&quot;bibtex-author\&quot;/&gt;.&lt;/span&gt;\n&lt;$view tiddler=&lt;&lt;ref-tid&gt;&gt; field=\&quot;bibtex-title\&quot;/&gt;. (&lt;$view tiddler=&lt;&lt;ref-tid&gt;&gt; field=\&quot;bibtex-year\&quot;/&gt;)\n&lt;/div&gt;\n&lt;/$reveal&gt;\n&lt;/div&gt;\n&lt;/$set&gt;\n\\end\n\n\\define create-notexisted-ref(refTid)\n&lt;$set name=\&quot;myTid\&quot; value=&lt;&lt;__refTid__&gt;&gt; &gt;\n&lt;$button class=\&quot;tc-btn-invisible tc-tiddlylink\&quot;&gt;\n&lt;$action-sendmessage $message=\&quot;tm-new-tiddler\&quot;\n    title=&lt;&lt;myTid&gt;&gt; \n    bibtex-author=\&quot;\&quot; bibtex-year=\&quot;\&quot;\n    bibtex-title=\&quot;\&quot;  bibtex-abstract=\&quot;\&quot;\n    bibtex-entry-type=\&quot;\&quot; bibtex-keywords=\&quot;\&quot;\n    bibtex-doi=\&quot;\&quot; bibtex-url=\&quot;\&quot;\n    /&gt;&lt;&lt;myTid&gt;&gt; \n&lt;/$button&gt;\n&lt;/$set&gt;    \n\\end\n\n\n\\define output-journal-article(p)\n&lt;$vars curtid=$p$ &gt;\n&lt;li&gt;&lt;$view field=\&quot;bibtex-author\&quot; tiddler=&lt;&lt;curtid&gt;&gt;/&gt;, &lt;span style=\&quot;text-transform: capitalize;\&quot;&gt;&lt;$view field=\&quot;bibtex-title\&quot; tiddler=&lt;&lt;curtid&gt;&gt;/&gt;&lt;/span&gt;,&lt;i&gt;&lt;$view field=\&quot;bibtex-journal\&quot; tiddler=&lt;&lt;curtid&gt;&gt;/&gt;&lt;/i&gt;, &lt;b&gt;&lt;$view field=\&quot;bibtex-year\&quot; tiddler=&lt;&lt;curtid&gt;&gt;/&gt;&lt;/b&gt;.&lt;/li&gt;\n&lt;/$vars&gt;\n\\end\n\n\\define showrefs(filter:\&quot;[&lt;currentTiddler&gt;]\&quot;, title:\&quot;Empty\&quot;, class:\&quot;ref-list\&quot;)\n&lt;$reveal tag=\&quot;div\&quot; type=\&quot;nomatch\&quot; default=\&quot;Empty\&quot; text=&lt;&lt;__title__&gt;&gt; &gt;\n&lt;h2&gt;$title$&lt;/h2&gt;\n&lt;/$reveal&gt;\n&lt;$wikify name=\&quot;mylist\&quot; text=\&quot;\&quot;\&quot;\n&lt;$list filter=&lt;&lt;__filter__&gt;&gt; &gt;\n&lt;$macrocall $name=\&quot;find\&quot; text={{!!text}} begin='&lt;&lt;ref' end='&gt;&gt;' /&gt;\n&lt;/$list&gt;\n\&quot;\&quot;\&quot;&gt;\n&lt;ol class=\&quot;$class$\&quot;&gt;\n&lt;$list filter=\&quot;[enlist&lt;mylist&gt;sort[]]\&quot; variable=\&quot;myListItem\&quot;&gt;\n&lt;$macrocall $name=\&quot;output-journal-article\&quot; p=&lt;&lt;myListItem&gt;&gt; /&gt;\n&lt;/$list&gt;\n&lt;/ol&gt;\n&lt;/$wikify&gt;\n\\end\n\n\n\n! Summary\nThe bibtex code contains several macros\n\n# `ref`: the macro to insert a reference into the text\n# `create-notexisted-ref`: called by `ref` to create a new reference, when it is not existed.\n# `bibliography`: the output macro used by find, displays a reference item.\n# `showbib` the macro scan the tiddler (tiddlers) for citations (references) and creates the references list. The `showbib` macro requires the `find` macro to show list of references.&quot;,
+            &quot;title&quot;: &quot;macro/bibtex&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Macro refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225249972&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20181210155346225&quot;
+        },
+        &quot;macro/find&quot;: {
+            &quot;text&quot;: &quot;\\define find(text, begin, end, output:\&quot;simple\&quot;)\n&lt;$vars \n  fulltext=&lt;&lt;__text__&gt;&gt;\n  start=&lt;&lt;__begin__&gt;&gt;\n  stop=&lt;&lt;__end__&gt;&gt;\n  output-macro=&lt;&lt;__output__&gt;&gt;\n&gt;\n&lt;$list variable=\&quot;p1\&quot; filter=\&quot;[&lt;fulltext&gt;splitbefore&lt;start&gt;]\&quot;&gt;\n&lt;$list variable=\&quot;p2\&quot; filter=\&quot;[&lt;fulltext&gt;removeprefix&lt;p1&gt;]\&quot;&gt;\n&lt;$list variable=\&quot;p3\&quot; filter=\&quot;[&lt;p2&gt;splitbefore&lt;stop&gt;removesuffix&lt;stop&gt;]\&quot;&gt;\n&lt;$macrocall $name=&lt;&lt;output-macro&gt;&gt; p=&lt;&lt;p3&gt;&gt; /&gt;\n&lt;$macrocall $name=\&quot;find\&quot;\n  text={{{[&lt;p2&gt;removeprefix&lt;p3&gt;removeprefix&lt;stop&gt;]}}}\n  begin=&lt;&lt;start&gt;&gt;\n  end=&lt;&lt;stop&gt;&gt;\n  output=&lt;&lt;output-macro&gt;&gt;\n/&gt;\n&lt;/$list&gt;\n&lt;/$list&gt;\n&lt;/$list&gt;\n&lt;/$vars&gt;\n\\end\n\n\\define simple(p)\n&lt;$text text=&lt;&lt;__p__&gt;&gt; /&gt;\n\\end\n\n\\define simple-list(p)\n&lt;li&gt;&lt;$text text=&lt;&lt;__p__&gt;&gt;/&gt;&lt;/li&gt;\n\\end\n\n!! Summary\n* `find` is a macro to search a text and find all snippets delimited between values of `begin` and `end` delimiters\n* `simple` is a macro used by `find` to show the output in a simple format\n* `simple-list` is a macro used by `find` to show the output in a simple list format. The ordered and unordered list\ncan be used if the call to `find` macro wrapped in a `div` with suitable type e.g `ol` or `ul`.&quot;,
+            &quot;title&quot;: &quot;macro/find&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Macro refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225304923&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20181213121411187&quot;
+        },
+        &quot;macro/footnote&quot;: {
+            &quot;text&quot;: &quot;\\define fnote(note)\n&lt;div class=\&quot;mr-tooltip nfootnote\&quot;&gt;&lt;div class=\&quot;mr-tooltiptext\&quot;&gt;$note$&lt;/div&gt;&lt;/div&gt;\n\\end\n\n\\define output-fnote(p)\n&lt;$vars output=$p$&gt;\n&lt;li&gt;&lt;&lt;output&gt;&gt;&lt;/li&gt;\n&lt;/$vars&gt;\n\\end\n\n\\define showfnotes(filter:\&quot;[&lt;currentTiddler&gt;]\&quot;, title:\&quot;Empty\&quot; class:\&quot;fnote-list\&quot;)\n&lt;$reveal tag=\&quot;div\&quot; type=\&quot;nomatch\&quot; default=\&quot;Empty\&quot; text=&lt;&lt;__title__&gt;&gt; &gt;\n&lt;div class=\&quot;h2\&quot;&gt;$title$&lt;/div&gt;\n&lt;/$reveal&gt;\n&lt;ol class=\&quot;$class$\&quot;&gt;\n&lt;$list filter=&lt;&lt;__filter__&gt;&gt; &gt;\n&lt;$macrocall $name=\&quot;find\&quot; \n   text={{!!text}}\n   begin='&lt;&lt;fnote' \n   end='&gt;&gt;' \n   output=\&quot;output-fnote\&quot;\n/&gt;\n&lt;/$list&gt;\n&lt;/ol&gt;\n\\end\n\n!! Summary\n* The `fnote` macro is used to insert a footnote\n* The `fnote` macro requires the `find` macro to work\n* The `showfnotes` lists all footnotes in a tiddler or a list of tiddlers (using a filter expression)\n* The `output-fnote` is a custom output macro to list the footnotes. See the `find` macro for more details.\n&quot;,
+            &quot;title&quot;: &quot;macro/footnote&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Macro refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225257024&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20181214095749808&quot;
+        },
+        &quot;stylesheet/abbr&quot;: {
+            &quot;text&quot;: &quot;/* Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3 */ \nabbr[title] {\n    color: inherit;\n    font-style: italic;\n    text-decoration: none;\n    border-bottom: 1px dotted #aaa;\n    cursor: help;\n}&quot;,
+            &quot;type&quot;: &quot;text/css&quot;,
+            &quot;title&quot;: &quot;stylesheet/abbr&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Stylesheet refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225309670&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20181022085407237&quot;
+        },
+        &quot;stylesheet/abbr/smallscreen&quot;: {
+            &quot;text&quot;: &quot;/* Ref:https://aarontgrogg.com/lab/\nShow the title for small screen\n*/ \n/* this works based on the max-width*/\n@media only screen and (max-width: 960px) {\nabbr:hover:after  { content: ' ('attr(title)')'; }\n}\n\n@media (hover: none) {\n/* Push the title attribute into generated content after the abbr. */\nabbr[title]::after { \n content: ' ('attr(title)')'; }\n}\n&quot;,
+            &quot;type&quot;: &quot;text/css&quot;,
+            &quot;title&quot;: &quot;stylesheet/abbr/smallscreen&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Stylesheet refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225309670&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20190102073150148&quot;
+        },
+        &quot;stylesheet/bibtex&quot;: {
+            &quot;text&quot;: &quot;.ref-nonumber{\n color:blue;\n font-size:90%;\n list-style-type:none;\n}\n\n.ref-nonumber li{\n  padding-bottom:8px;\n}\n\n.ref-list{\n color:blue;\n font-size:90%;\n}\n\n.link-refcls{\n font-weight:400;\n color:#00008B; /*darkblue*/\n text-decoration:none;\n}\n\n.refcls{\n color:#00008B;\n text-transform: capitalize;\n}\n\n.ref-notfound{\n  color: #856404 !important;\n  background-color: #fff3cd !important;\n}\n\n.ref-author{\n  color:#00008B; /*color for author in tooltip*/\n}&quot;,
+            &quot;type&quot;: &quot;text/css&quot;,
+            &quot;title&quot;: &quot;stylesheet/bibtex&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Stylesheet refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225249973&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20181220161713706&quot;
+        },
+        &quot;stylesheet/footnote-counter&quot;: {
+            &quot;text&quot;: &quot;/*automatic counter for fnote macro. The counter resets at the begining of each tiddler*/\n.tc-tiddler-frame {\n  counter-reset: fnote-count;\n}\n.nfootnote {\n  counter-increment: fnote-count;\n}\n.nfootnote:after {\n  content: counter(fnote-count);\n  font-size:small;\n  color:#0000ee;\n  vertical-align: super;\n  line-height: 1.5;\n  margin-left: -0.1em;\n}\n&quot;,
+            &quot;type&quot;: &quot;text/css&quot;,
+            &quot;title&quot;: &quot;stylesheet/footnote-counter&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Stylesheet refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225257025&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20181214085707714&quot;
+        },
+        &quot;stylesheet/mr-tooltip&quot;: {
+            &quot;text&quot;: &quot;/* tooltip class used for ref, fnote and other macros */\n.mr-tooltip {\n    position: relative;\n    display: inline-block;\n    cursor: pointer; \n}\n\n.mr-tooltip .mr-tooltiptext{\n  font-size: 0.90em; /* change if it is too small */\n}\n\n.mr-tooltip .mr-tooltiptext {\n    visibility: hidden;\n    background-color: #fff;\n    color: #222222; \n    text-align: left;\n    border-radius: 2px;\n    padding: 5px 10px;\n    max-width: 30vw;\n    max-height:20em;\n    overflow-y: auto;\n    cursor: auto;\n    width: max-content;\n    width: -moz-max-content;\n    width: -webkit-max-content;\n    width: -o-max-content;\n  \n    /* Position the tooltip */\n    position: absolute;\n    z-index: 1;\n    bottom: 100%;\n    left: 50%;\n    margin-left: -40px;\n    box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);\n}\n\n.mr-tooltip:hover .mr-tooltiptext {\n    visibility: visible;\n    /*opacity: 0.9;*/\n}\n&quot;,
+            &quot;type&quot;: &quot;text/css&quot;,
+            &quot;title&quot;: &quot;stylesheet/mr-tooltip&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Stylesheet refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225257026&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20181215201115750&quot;
+        },
+        &quot;stylesheet/mr-tooltip/smallscreen&quot;: {
+            &quot;text&quot;: &quot;@media screen and (max-width: 960px) {\n.mr-tooltip .mr-tooltiptext {\n    /* Position the tooltip */\n    position:fixed;\n    top:0;\n    left: 0;\n    margin-left: 0px;\n    bottom: unset;\n    width:100%;\n    max-width: 100vw;\n    z-index: 9999;\n}  \n\n.mr-tooltip:hover .mr-tooltiptext {\n   opacity: 1;\n}  \n  \n}&quot;,
+            &quot;type&quot;: &quot;text/css&quot;,
+            &quot;title&quot;: &quot;stylesheet/mr-tooltip/smallscreen&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Stylesheet refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225257026&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20190102053815948&quot;
+        },
+        &quot;stylesheet/showfnotes&quot;: {
+            &quot;text&quot;: &quot;/* Footnote class*/\n\n.fnote-list{\n color:blue;\n font-size:90%;\n}\n\n.fnote-pretty{\n display: block;\n  margin: 0.5em;\n  margin-right: auto;\n  width: 100% !important;\n  border-collapse: collapse;\n  padding: 15px 15px 15px 25px; /*left padding=25px*/\n  border-width:  0px;\n  border-style: solid;\n  border-left-width: 1px;\n  background-color:  rgb(255,248,220);\n  color: rgb(91,49,7);\n  line-height: 1.2em; \n  font-size:0.9em;\n}\n&quot;,
+            &quot;type&quot;: &quot;text/css&quot;,
+            &quot;title&quot;: &quot;stylesheet/showfnotes&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Stylesheet refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225257027&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20181219144814573&quot;
+        },
+        &quot;viewtemplate/bibtex&quot;: {
+            &quot;text&quot;: &quot;&lt;$list filter=\&quot;[all[current]has[bibtex-title]]\&quot;&gt;\n\n* ''DOI'': {{!!bibtex-doi}}\n* ''Published'': {{!!bibtex-journal}}, {{!!bibtex-year}}\n&lt;div style=\&quot;font-size:1.3em;font-weight:700;text-align:center;padding:10px;\&quot;&gt; &lt;$text text={{!!bibtex-title}}/&gt;&lt;/div&gt;\n&lt;div style=\&quot;font-weight:500;text-align:center;color:indigo;\&quot;&gt; &lt;$text text={{!!bibtex-author}}/&gt;&lt;/div&gt;\n\n!! ''Abstract''\n&gt;&lt;$text text={{!!bibtex-abstract}}/&gt;\n\n''Keywords'': {{!!bibtex-keywords}}\n&lt;/$list&gt;&quot;,
+            &quot;title&quot;: &quot;viewtemplate/bibtex&quot;,
+            &quot;tags&quot;: &quot;$:/tags/ViewTemplate refnotes&quot;,
+            &quot;modifier&quot;: &quot;Mohammad&quot;,
+            &quot;modified&quot;: &quot;20190103225249976&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
+            &quot;created&quot;: &quot;20181220142502642&quot;
+        },
         &quot;$:/plugins/.mr/refnotes/license&quot;: {
+            &quot;created&quot;: &quot;20181101134530634&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
             &quot;text&quot;: &quot;Distributed under an MIT license.\n\nCopyright (c) 2018 [[Mohammad Rahmani|https://github.com/kookma]]\n\n&lt;&lt;&lt;\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \&quot;Software\&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \&quot;AS IS\&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n&lt;&lt;&lt;\n&quot;,
             &quot;type&quot;: &quot;application/x-tiddler&quot;,
             &quot;title&quot;: &quot;$:/plugins/.mr/refnotes/license&quot;,
-            &quot;tags&quot;: &quot;find-macro&quot;,
             &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181228094457988&quot;,
-            &quot;creator&quot;: &quot;Mohammad&quot;,
-            &quot;created&quot;: &quot;20181101134530634&quot;
+            &quot;modified&quot;: &quot;20190103224812527&quot;,
+            &quot;tags&quot;: &quot;refnotes&quot;
         },
         &quot;$:/plugins/.mr/refnotes/readme&quot;: {
             &quot;created&quot;: &quot;20181228094509051&quot;,
             &quot;creator&quot;: &quot;Mohammad&quot;,
             &quot;text&quot;: &quot;&lt;div style=\&quot;font-size:1.5em; font-weight:500; text-align:center;\&quot;&gt;\nRefnotes is part of [[Shiraz plugin|https://kookma.github.io/Shiraz/]]\n&lt;/div&gt;\n\n\n! Refnotes\nRefnotes is a set of macros and stylesheets for creating abbreviation, footnote and reference (citations). It also used to make tables of footnotes, abbreviations and also bibliography table.\n\n\nIt contains codes and elements for\n\n# Create and insert\n## Abbreviation (`abbr` macro)\n## Footnote (`fnote` macro)\n## Reference (`ref` macro)\n# Creating list (table) of\n## Abbreviations (glossary table)  (`showabbrs` macro)\n## Footnotes and endnotes  (`showfnotes` macro)\n## References (bibliography) using different output style (`showrefs` macro)\n\n!! Requirements\nThe Refnotes requires\n\n* TW 5.1.18 (and above)\n* The `find` macro\n\nIt is recommended to use the official `Bibtex Importer` plugin for using with bibliography code.\n\n! Find macro\nListing abbreviations, footnotes, and references is done using the `find` macro. This macro lets you to look up in a tiddler or a group of tiddlers for contents delimited by some [[delimiters|delimiter]].\n\n! Tutorial and documentation\nThe documentation and demo can be found at\n\nhttps://kookma.github.io/Refnotes/\n\n\n!! Acknowledgement\n\n{{Acknowledgement}}\n\n&quot;,
             &quot;title&quot;: &quot;$:/plugins/.mr/refnotes/readme&quot;,
-            &quot;tags&quot;: &quot;&quot;,
+            &quot;tags&quot;: &quot;refnotes&quot;,
             &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181228101905556&quot;
+            &quot;modified&quot;: &quot;20190103224823751&quot;
         },
         &quot;$:/plugins/.mr/refnotes/usage&quot;: {
+            &quot;created&quot;: &quot;20181228094933760&quot;,
+            &quot;creator&quot;: &quot;Mohammad&quot;,
             &quot;text&quot;: &quot;! Usage\n!! Abbreviation\n* Insert abbreviation\n```\n&lt;&lt;abbr term&gt;&gt;\n&lt;&lt;abbr term dict:\&quot;dictionary-tiddler\&quot;&gt;&gt;\n```\n\n* List abbreviations (glossary table)\n```\n&lt;&lt;showabbrs filter dtiddler title&gt;&gt;\n&lt;&lt;abbr-list indexes dtiddler title&gt;&gt;\n```\n\n!! Bibliography\n* Insert reference\n```\n&lt;&lt;ref tid&gt;&gt;\n&lt;&lt;ref [[tid]]&gt;&gt;\n```\n\n* List references\n```\n&lt;&lt;showrefs filter class title&gt;&gt;\n```\n\n!! Footnotes\n* Insert footnote\n```\n&lt;&lt;fnote note&gt;&gt;\n```\n\n* List footnotes\n```\n&lt;&lt;showfnotes filter class title&gt;&gt;\n```\n\nFor detailed instruction see:\n\nhttps://kookma.github.io/Refnotes/&quot;,
             &quot;title&quot;: &quot;$:/plugins/.mr/refnotes/usage&quot;,
-            &quot;tags&quot;: &quot;&quot;,
+            &quot;tags&quot;: &quot;refnotes&quot;,
             &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181228095534281&quot;,
-            &quot;creator&quot;: &quot;Mohammad&quot;,
-            &quot;created&quot;: &quot;20181228094933760&quot;
-        },
-        &quot;macro/footnote&quot;: {
-            &quot;text&quot;: &quot;\\define fnote(note)\n&lt;div class=\&quot;mr-tooltip nfootnote\&quot;&gt;&lt;div class=\&quot;mr-tooltiptext\&quot;&gt;$note$&lt;/div&gt;&lt;/div&gt;\n\\end\n\n\\define output-fnote(p)\n&lt;$vars output=$p$&gt;\n&lt;li&gt;&lt;&lt;output&gt;&gt;&lt;/li&gt;\n&lt;/$vars&gt;\n\\end\n\n\\define showfnotes(filter:\&quot;[&lt;currentTiddler&gt;]\&quot;, title:\&quot;Empty\&quot; class:\&quot;fnote-list\&quot;)\n&lt;$reveal tag=\&quot;div\&quot; type=\&quot;nomatch\&quot; default=\&quot;Empty\&quot; text=&lt;&lt;__title__&gt;&gt; &gt;\n&lt;div class=\&quot;h2\&quot;&gt;$title$&lt;/div&gt;\n&lt;/$reveal&gt;\n&lt;ol class=\&quot;$class$\&quot;&gt;\n&lt;$list filter=&lt;&lt;__filter__&gt;&gt; &gt;\n&lt;$macrocall $name=\&quot;find\&quot; \n   text={{!!text}}\n   begin='&lt;&lt;fnote' \n   end='&gt;&gt;' \n   output=\&quot;output-fnote\&quot;\n/&gt;\n&lt;/$list&gt;\n&lt;/ol&gt;\n\\end\n\n!! Summary\n* The `fnote` macro is used to insert a footnote\n* The `fnote` macro requires the `find` macro to work\n* The `showfnotes` lists all footnotes in a tiddler or a list of tiddlers (using a filter expression)\n* The `output-fnote` is a custom output macro to list the footnotes. See the `find` macro for more details.\n&quot;,
-            &quot;title&quot;: &quot;macro/footnote&quot;,
-            &quot;tags&quot;: &quot;footnote $:/tags/Macro&quot;,
-            &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181228044415181&quot;,
-            &quot;creator&quot;: &quot;Mohammad&quot;,
-            &quot;created&quot;: &quot;20181214095749808&quot;
-        },
-        &quot;stylesheet/footnote-counter&quot;: {
-            &quot;text&quot;: &quot;/*automatic counter for fnote macro. The counter resets at the begining of each tiddler*/\n.tc-tiddler-frame {\n  counter-reset: fnote-count;\n}\n.nfootnote {\n  counter-increment: fnote-count;\n}\n.nfootnote:after {\n  content: counter(fnote-count);\n  font-size:small;\n  color:#0000ee;\n  vertical-align: super;\n  line-height: 1.5;\n  margin-left: -0.1em;\n}\n&quot;,
-            &quot;type&quot;: &quot;text/css&quot;,
-            &quot;title&quot;: &quot;stylesheet/footnote-counter&quot;,
-            &quot;tags&quot;: &quot;$:/tags/Stylesheet footnote&quot;,
-            &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181228043804383&quot;,
-            &quot;creator&quot;: &quot;Mohammad&quot;,
-            &quot;created&quot;: &quot;20181214085707714&quot;
-        },
-        &quot;stylesheet/showfnotes&quot;: {
-            &quot;text&quot;: &quot;/* Footnote class*/\n\n.fnote-list{\n color:blue;\n font-size:90%;\n}\n\n.fnote-pretty{\n display: block;\n  margin: 0.5em;\n  margin-right: auto;\n  width: 100% !important;\n  border-collapse: collapse;\n  padding: 15px 15px 15px 25px; /*left padding=25px*/\n  border-width:  0px;\n  border-style: solid;\n  border-left-width: 1px;\n  background-color:  rgb(255,248,220);\n  color: rgb(91,49,7);\n  line-height: 1.2em; \n  font-size:0.9em;\n}\n&quot;,
-            &quot;type&quot;: &quot;text/css&quot;,
-            &quot;title&quot;: &quot;stylesheet/showfnotes&quot;,
-            &quot;tags&quot;: &quot;$:/tags/Stylesheet footnote&quot;,
-            &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181228043616679&quot;,
-            &quot;creator&quot;: &quot;Mohammad&quot;,
-            &quot;created&quot;: &quot;20181219144814573&quot;
-        },
-        &quot;macro/bibtex&quot;: {
-            &quot;text&quot;: &quot;\\define ref(tid)\n&lt;$set name=\&quot;ref-tid\&quot; tiddler=&lt;&lt;__tid__&gt;&gt; field=\&quot;title\&quot; emptyValue=\&quot;RefNotFound\&quot;&gt;\n&lt;div class=\&quot;mr-tooltip refcls\&quot;&gt;\n&lt;$reveal type=\&quot;match\&quot; default=&lt;&lt;ref-tid&gt;&gt; text=\&quot;RefNotFound\&quot;&gt;\n&lt;$link overrideClass=\&quot;link-refcls\&quot;&gt;\n[&lt;$view tiddler=&lt;&lt;__tid__&gt;&gt; field=\&quot;title\&quot;/&gt;]\n&lt;/$link&gt;\n&lt;div class=\&quot;mr-tooltiptext ref-notfound\&quot;&gt;&lt;b&gt;Warning&lt;/b&gt;: Reference Not Found.&lt;br&gt;Click to create it:&lt;&lt;create-notexisted-ref \&quot;$tid$\&quot;&gt;&gt;&lt;/div&gt;\n&lt;/$reveal&gt;\n&lt;$reveal type=\&quot;nomatch\&quot; default=&lt;&lt;ref-tid&gt;&gt; text=\&quot;RefNotFound\&quot;&gt;\n&lt;$link overrideClass=\&quot;link-refcls\&quot; to=\&quot;\&quot;\&quot;$tid$\&quot;\&quot;\&quot;&gt;\n[&lt;$view tiddler=&lt;&lt;__tid__&gt;&gt; field=\&quot;caption\&quot;&gt;\n &lt;$view tiddler=&lt;&lt;__tid__&gt;&gt; field=\&quot;title\&quot;&gt;&lt;/$view&gt;\n&lt;/$view&gt;]\n&lt;/$link&gt;\n&lt;div class=\&quot;mr-tooltiptext\&quot;&gt;\n&lt;span class=\&quot;ref-author\&quot;&gt;&lt;$view tiddler=&lt;&lt;ref-tid&gt;&gt; field=\&quot;bibtex-author\&quot;/&gt;.&lt;/span&gt;\n&lt;$view tiddler=&lt;&lt;ref-tid&gt;&gt; field=\&quot;bibtex-title\&quot;/&gt;. (&lt;$view tiddler=&lt;&lt;ref-tid&gt;&gt; field=\&quot;bibtex-year\&quot;/&gt;)\n&lt;/div&gt;\n&lt;/$reveal&gt;\n&lt;/div&gt;\n&lt;/$set&gt;\n\\end\n\n\\define create-notexisted-ref(refTid)\n&lt;$set name=\&quot;myTid\&quot; value=&lt;&lt;__refTid__&gt;&gt; &gt;\n&lt;$button class=\&quot;tc-btn-invisible tc-tiddlylink\&quot;&gt;\n&lt;$action-sendmessage $message=\&quot;tm-new-tiddler\&quot;\n    title=&lt;&lt;myTid&gt;&gt; \n    bibtex-author=\&quot;\&quot; bibtex-year=\&quot;\&quot;\n    bibtex-title=\&quot;\&quot;  bibtex-abstract=\&quot;\&quot;\n    bibtex-entry-type=\&quot;\&quot; bibtex-keywords=\&quot;\&quot;\n    bibtex-doi=\&quot;\&quot; bibtex-url=\&quot;\&quot;\n    /&gt;&lt;&lt;myTid&gt;&gt; \n&lt;/$button&gt;\n&lt;/$set&gt;    \n\\end\n\n\n\\define output-journal-article(p)\n&lt;$vars curtid=$p$ &gt;\n&lt;li&gt;&lt;$view field=\&quot;bibtex-author\&quot; tiddler=&lt;&lt;curtid&gt;&gt;/&gt;, &lt;span style=\&quot;text-transform: capitalize;\&quot;&gt;&lt;$view field=\&quot;bibtex-title\&quot; tiddler=&lt;&lt;curtid&gt;&gt;/&gt;&lt;/span&gt;,&lt;i&gt;&lt;$view field=\&quot;bibtex-journal\&quot; tiddler=&lt;&lt;curtid&gt;&gt;/&gt;&lt;/i&gt;, &lt;b&gt;&lt;$view field=\&quot;bibtex-year\&quot; tiddler=&lt;&lt;curtid&gt;&gt;/&gt;&lt;/b&gt;.&lt;/li&gt;\n&lt;/$vars&gt;\n\\end\n\n\\define showrefs(filter:\&quot;[&lt;currentTiddler&gt;]\&quot;, title:\&quot;Empty\&quot;, class:\&quot;ref-list\&quot;)\n&lt;$reveal tag=\&quot;div\&quot; type=\&quot;nomatch\&quot; default=\&quot;Empty\&quot; text=&lt;&lt;__title__&gt;&gt; &gt;\n&lt;h2&gt;$title$&lt;/h2&gt;\n&lt;/$reveal&gt;\n&lt;$wikify name=\&quot;mylist\&quot; text=\&quot;\&quot;\&quot;\n&lt;$list filter=&lt;&lt;__filter__&gt;&gt; &gt;\n&lt;$macrocall $name=\&quot;find\&quot; text={{!!text}} begin='&lt;&lt;ref' end='&gt;&gt;' /&gt;\n&lt;/$list&gt;\n\&quot;\&quot;\&quot;&gt;\n&lt;ol class=\&quot;$class$\&quot;&gt;\n&lt;$list filter=\&quot;[enlist&lt;mylist&gt;sort[]]\&quot; variable=\&quot;myListItem\&quot;&gt;\n&lt;$macrocall $name=\&quot;output-journal-article\&quot; p=&lt;&lt;myListItem&gt;&gt; /&gt;\n&lt;/$list&gt;\n&lt;/ol&gt;\n&lt;/$wikify&gt;\n\\end\n\n\n\n! Summary\nThe bibtex code contains several macros\n\n# `ref`: the macro to insert a reference into the text\n# `create-notexisted-ref`: called by `ref` to create a new reference, when it is not existed.\n# `bibliography`: the output macro used by find, displays a reference item.\n# `showbib` the macro scan the tiddler (tiddlers) for citations (references) and creates the references list. The `showbib` macro requires the `find` macro to show list of references.&quot;,
-            &quot;title&quot;: &quot;macro/bibtex&quot;,
-            &quot;tags&quot;: &quot;$:/tags/Macro bibtex&quot;,
-            &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181227171031933&quot;,
-            &quot;creator&quot;: &quot;Mohammad&quot;,
-            &quot;created&quot;: &quot;20181210155346225&quot;
-        },
-        &quot;stylesheet/bibtex&quot;: {
-            &quot;text&quot;: &quot;.ref-nonumber{\n color:blue;\n font-size:90%;\n list-style-type:none;\n}\n\n.ref-nonumber li{\n  padding-bottom:8px;\n}\n\n.ref-list{\n color:blue;\n font-size:90%;\n}\n\n.link-refcls{\n font-weight:400;\n color:#00008B; /*darkblue*/\n text-decoration:none;\n}\n\n.refcls{\n color:#00008B;\n text-transform: capitalize;\n}\n\n.ref-notfound{\n  color: #856404 !important;\n  background-color: #fff3cd !important;\n}\n\n.ref-author{\n  color:#00008B; /*color for author in tooltip*/\n}&quot;,
-            &quot;type&quot;: &quot;text/css&quot;,
-            &quot;title&quot;: &quot;stylesheet/bibtex&quot;,
-            &quot;tags&quot;: &quot;$:/tags/Stylesheet bibtex&quot;,
-            &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181227170600670&quot;,
-            &quot;creator&quot;: &quot;Mohammad&quot;,
-            &quot;created&quot;: &quot;20181220161713706&quot;
-        },
-        &quot;viewtemplate/bibtex&quot;: {
-            &quot;text&quot;: &quot;&lt;$list filter=\&quot;[all[current]has[bibtex-title]]\&quot;&gt;\n\n* ''DOI'': {{!!bibtex-doi}}\n* ''Published'': {{!!bibtex-journal}}, {{!!bibtex-year}}\n&lt;div style=\&quot;font-size:1.3em;font-weight:700;text-align:center;padding:10px;\&quot;&gt; &lt;$text text={{!!bibtex-title}}/&gt;&lt;/div&gt;\n&lt;div style=\&quot;font-weight:500;text-align:center;color:indigo;\&quot;&gt; &lt;$text text={{!!bibtex-author}}/&gt;&lt;/div&gt;\n\n!! ''Abstract''\n&gt;&lt;$text text={{!!bibtex-abstract}}/&gt;\n\n''Keywords'': {{!!bibtex-keywords}}\n&lt;/$list&gt;&quot;,
-            &quot;title&quot;: &quot;viewtemplate/bibtex&quot;,
-            &quot;tags&quot;: &quot;bibtex $:/tags/ViewTemplate&quot;,
-            &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181227165801369&quot;,
-            &quot;creator&quot;: &quot;Mohammad&quot;,
-            &quot;created&quot;: &quot;20181220142502642&quot;
-        },
-        &quot;macro/abbr&quot;: {
-            &quot;text&quot;: &quot;\\define abbr(term:\&quot;\&quot;, dict:\&quot;Glossary\&quot;)\n&lt;$set name=\&quot;abbreviation\&quot; \n tiddler=\&quot;\&quot;\&quot;$dict$\&quot;\&quot;\&quot;\n index=\&quot;\&quot;\&quot;$term$\&quot;\&quot;\&quot;\n emptyValue=\&quot;Term not found\&quot;&gt;\n &lt;abbr title=&lt;&lt;abbreviation&gt;&gt; &gt;$term$&lt;/abbr&gt;\n&lt;/$set&gt;\n\\end\n\n\n\\define abbr-list(indexes, dtiddler:\&quot;\&quot; title:\&quot;Empty\&quot;)\n&lt;$reveal tag=\&quot;div\&quot; type=\&quot;nomatch\&quot; default=\&quot;Empty\&quot; text=&lt;&lt;__title__&gt;&gt; &gt;\n&lt;h2&gt;$title$&lt;/h2&gt;\n&lt;/$reveal&gt;\n&lt;table class=\&quot;table-borderless\&quot;&gt;\n&lt;$list filter=\&quot;\&quot;\&quot;$indexes$ +[sort[title]]\&quot;\&quot;\&quot; variable=\&quot;item\&quot;&gt;\n&lt;tr&gt;\n&lt;td style=\&quot;color:blue;\&quot;&gt;&lt;&lt;item&gt;&gt;&lt;/td&gt;\n&lt;td&gt;\n &lt;$set name=\&quot;term\&quot; tiddler=\&quot;\&quot;\&quot;$dtiddler$\&quot;\&quot;\&quot;  index=&lt;&lt;item&gt;&gt;  emptyValue=\&quot;//Term not found//\&quot;&gt;\n &lt;&lt;term&gt;&gt;\n &lt;/$set&gt;\n&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/$list&gt;\n&lt;/table&gt;\n\\end\n\n\n\\define output-item(p)\n&lt;$set name=\&quot;items\&quot; value=&lt;&lt;__p__&gt;&gt; &gt;\n&lt;$set name=\&quot;item\&quot; value={{{ [enlist&lt;items&gt;limit[1]] }}} &gt;\n&lt;$set name=\&quot;item-noquotes\&quot; value={{{ [&lt;item&gt;removeprefix[\&quot;]removesuffix[\&quot;]] [&lt;item&gt;removeprefix[']removesuffix[']] ~[&lt;item&gt;] }}} emptyValue=\&quot;NOT_FOUND\&quot;&gt;\n&lt;&lt;item-noquotes&gt;&gt;\n&lt;/$set&gt;\n&lt;/$set&gt;\n&lt;/$set&gt;\n\\end\n\n\n\\define showabbrs(filter:\&quot;[&lt;currentTiddler&gt;]\&quot;, dtiddler:\&quot;Glossary\&quot;, title:\&quot;Empty\&quot;)\n&lt;$wikify name=\&quot;term-indexes\&quot; text=\&quot;\&quot;\&quot;\n&lt;$set name=\&quot;dictionary\&quot; value=&lt;&lt;__dtiddler__&gt;&gt; &gt;\n&lt;$list filter=&lt;&lt;__filter__&gt;&gt; &gt;\n&lt;$macrocall $name=\&quot;find\&quot; text={{!!text}} begin=\&quot;&lt;&lt;abbr \&quot; end=\&quot;&gt;&gt;\&quot; output=\&quot;output-item\&quot;/&gt;\n&lt;/$list&gt;\n&lt;/$set&gt;\n\&quot;\&quot;\&quot;&gt; \n&lt;$macrocall $name=\&quot;abbr-list\&quot; indexes=&lt;&lt;term-indexes&gt;&gt; dtiddler=&lt;&lt;__dtiddler__&gt;&gt; title=&lt;&lt;__title__&gt;&gt; /&gt;\n&lt;/$wikify&gt;\n\\end\n\n! Summary\n* `abbr` inserts an abbreviation\n* `abbr-list` creates a glossary table from list of terms given through indexes parameter. The output is sorted alphabetically. This macro is normally called by `showabbrs`, but can be called directly to make a glossary table from a list of given terms.\n* `showabbrs` creates a glossary table from the abbreviation terms found in tiddlers text given by `filter` parameter. It uses two other macros to do the job.\n** `find`: to find the `&lt;&lt;abbr ....&gt;&gt;` occurrences\n** `output-item`:  to extract the abbreviation terms and remove the surrounding quotes\n** `abbr-list` to create the glossary table from the output of `find` macro\n\n! How showabbrs works?\nIt actually uses the find macro to find all occurrences of `&lt;&lt;abbr...&gt;&gt;` and uses `output-item` to extract then the glossary term and stores the result (a list of terms separated by space) in the variable `term-indexes`. This list then passed to `abbr-list` macro to be displayed as a glossary table. In facts `abbr-list` reads the definition of each term in `dtiddler` dictionary and displays the result as a table row.&quot;,
-            &quot;title&quot;: &quot;macro/abbr&quot;,
-            &quot;tags&quot;: &quot;abbr $:/tags/Macro&quot;,
-            &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181227155613597&quot;,
-            &quot;creator&quot;: &quot;Mohammad&quot;,
-            &quot;created&quot;: &quot;20181022071907838&quot;
-        },
-        &quot;stylesheet/abbr&quot;: {
-            &quot;text&quot;: &quot;/* Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3 */ \nabbr[title] {\n    color: inherit;\n    font-style: italic;\n    text-decoration: none;\n    border-bottom: 1px dotted #aaa;\n    cursor: help;\n}&quot;,
-            &quot;type&quot;: &quot;text/css&quot;,
-            &quot;title&quot;: &quot;stylesheet/abbr&quot;,
-            &quot;tags&quot;: &quot;abbr $:/tags/Stylesheet&quot;,
-            &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181227155028673&quot;,
-            &quot;creator&quot;: &quot;Mohammad&quot;,
-            &quot;created&quot;: &quot;20181022085407237&quot;
-        },
-        &quot;macro/find&quot;: {
-            &quot;text&quot;: &quot;\\define find(text, begin, end, output:\&quot;simple\&quot;)\n&lt;$vars \n  fulltext=&lt;&lt;__text__&gt;&gt;\n  start=&lt;&lt;__begin__&gt;&gt;\n  stop=&lt;&lt;__end__&gt;&gt;\n  output-macro=&lt;&lt;__output__&gt;&gt;\n&gt;\n&lt;$list variable=\&quot;p1\&quot; filter=\&quot;[&lt;fulltext&gt;splitbefore&lt;start&gt;]\&quot;&gt;\n&lt;$list variable=\&quot;p2\&quot; filter=\&quot;[&lt;fulltext&gt;removeprefix&lt;p1&gt;]\&quot;&gt;\n&lt;$list variable=\&quot;p3\&quot; filter=\&quot;[&lt;p2&gt;splitbefore&lt;stop&gt;removesuffix&lt;stop&gt;]\&quot;&gt;\n&lt;$macrocall $name=&lt;&lt;output-macro&gt;&gt; p=&lt;&lt;p3&gt;&gt; /&gt;\n&lt;$macrocall $name=\&quot;find\&quot;\n  text={{{[&lt;p2&gt;removeprefix&lt;p3&gt;removeprefix&lt;stop&gt;]}}}\n  begin=&lt;&lt;start&gt;&gt;\n  end=&lt;&lt;stop&gt;&gt;\n  output=&lt;&lt;output-macro&gt;&gt;\n/&gt;\n&lt;/$list&gt;\n&lt;/$list&gt;\n&lt;/$list&gt;\n&lt;/$vars&gt;\n\\end\n\n\\define simple(p)\n&lt;$text text=&lt;&lt;__p__&gt;&gt; /&gt;\n\\end\n\n\\define simple-list(p)\n&lt;li&gt;&lt;$text text=&lt;&lt;__p__&gt;&gt;/&gt;&lt;/li&gt;\n\\end\n\n!! Summary\n* `find` is a macro to search a text and find all snippets delimited between values of `begin` and `end` delimiters\n* `simple` is a macro used by `find` to show the output in a simple format\n* `simple-list` is a macro used by `find` to show the output in a simple list format. The ordered and unordered list\ncan be used if the call to `find` macro wrapped in a `div` with suitable type e.g `ol` or `ul`.&quot;,
-            &quot;title&quot;: &quot;macro/find&quot;,
-            &quot;tags&quot;: &quot;find-macro $:/tags/Macro&quot;,
-            &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181228075207837&quot;,
-            &quot;creator&quot;: &quot;Mohammad&quot;,
-            &quot;created&quot;: &quot;20181213121411187&quot;
-        },
-        &quot;refnotes/stylesheet/tables&quot;: {
-            &quot;created&quot;: &quot;20180413092232257&quot;,
-            &quot;creator&quot;: &quot;Mohammad&quot;,
-            &quot;text&quot;: &quot;/*Borderless table*/\n.table-borderless, \n.table-borderless th, \n.table-borderless tr, \n.table-borderless td{\n  border:0;\n}\n&quot;,
-            &quot;type&quot;: &quot;text/css&quot;,
-            &quot;title&quot;: &quot;refnotes/stylesheet/tables&quot;,
-            &quot;tags&quot;: &quot;$:/tags/Stylesheet&quot;,
-            &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181228102642002&quot;
-        },
-        &quot;stylesheet/mr-tooltip&quot;: {
-            &quot;text&quot;: &quot;/* tooltip class used for ref, fnote and other macros */\n.mr-tooltip {\n    position: relative;\n    display: inline-block;\n    cursor: pointer; \n}\n\n.mr-tooltip .mr-tooltiptext{\n  font-size: 0.90em; /* change if it is too small */\n}\n\n.mr-tooltip .mr-tooltiptext {\n    visibility: hidden;\n    background-color: #fff;\n    color: #222222; \n    text-align: left;\n    border-radius: 2px;\n    padding: 5px 10px;\n    max-width: 30vw;\n    max-height:20em;\n    overflow-y: auto;\n    cursor: auto;\n    width: max-content;\n    width: -moz-max-content;\n    width: -webkit-max-content;\n    width: -o-max-content;\n  \n    /* Position the tooltip */\n    position: absolute;\n    z-index: 1;\n    bottom: 100%;\n    left: 50%;\n    margin-left: -40px;\n    box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);\n}\n\n.mr-tooltip:hover .mr-tooltiptext {\n    visibility: visible;\n    /*opacity: 0.9;*/\n}\n&quot;,
-            &quot;type&quot;: &quot;text/css&quot;,
-            &quot;title&quot;: &quot;stylesheet/mr-tooltip&quot;,
-            &quot;tags&quot;: &quot;bibtex footnote $:/tags/Stylesheet&quot;,
-            &quot;modifier&quot;: &quot;Mohammad&quot;,
-            &quot;modified&quot;: &quot;20181227165917071&quot;,
-            &quot;creator&quot;: &quot;Mohammad&quot;,
-            &quot;created&quot;: &quot;20181215201115750&quot;
+            &quot;modified&quot;: &quot;20190103224754295&quot;
         }
     }
 }</pre>
@@ -10752,9 +10785,6 @@ exports.hljs = hljs;</pre>
 <div created="20181225205052875" creator="Mohammad" modified="20181228112957479" modifier="Mohammad" title="$:/state/editpreviewtype">
 <pre>$:/core/ui/EditTemplate/body/preview/output</pre>
 </div>
-<div created="20181223161520739" creator="Mohammad" modified="20181223161653998" modifier="Mohammad" title="$:/state/folded/Refnotes Plugin">
-<pre>show</pre>
-</div>
 <div created="20181226152614210" creator="Mohammad" modified="20181226152744082" modifier="Mohammad" tag="HelloThere" title="$:/state/MyState-686262240">
 <pre>mr/state/MyState-686262240</pre>
 </div>
@@ -10764,8 +10794,8 @@ exports.hljs = hljs;</pre>
 <div created="20181221115349659" creator="Mohammad" modified="20181228084344728" modifier="Mohammad" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
-<div created="20181221123036849" creator="Mohammad" modified="20181228112358080" modifier="Mohammad" title="$:/state/tab--1498284803">
-<pre>$:/core/ui/AdvancedSearch/Filter</pre>
+<div created="20181221123036849" creator="Mohammad" modified="20190103122951584" modifier="Mohammad" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
 </div>
 <div created="20181228053551496" creator="Mohammad" modified="20181228053610328" modifier="Mohammad" title="$:/state/tab--1963855381">
 <pre>$:/themes/tiddlywiki/vanilla/themetweaks</pre>
@@ -10779,8 +10809,8 @@ exports.hljs = hljs;</pre>
 <div created="20181226160735480" creator="Mohammad" modified="20181226160735480" modifier="Mohammad" title="$:/state/tab-1342078386">
 <pre>$:/core/ui/ControlPanel/Plugins/Add/Themes</pre>
 </div>
-<div created="20181221115513329" creator="Mohammad" modified="20181228114313491" modifier="Mohammad" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Plugins</pre>
+<div created="20181221115513329" creator="Mohammad" modified="20190103225642853" modifier="Mohammad" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Info</pre>
 </div>
 <div created="20181223161701470" creator="Mohammad" modified="20181223161701470" modifier="Mohammad" title="$:/state/tab-422751464">
 <pre>$:/core/ui/TiddlerInfo/Tools</pre>
@@ -10788,7 +10818,7 @@ exports.hljs = hljs;</pre>
 <div created="20181221122637978" creator="Mohammad" modified="20181222181512402" modifier="Mohammad" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Drafts</pre>
 </div>
-<div created="20181220200358763" creator="Mohammad" modified="20181228112543233" modifier="Mohammad" title="$:/state/tab/sidebar--595412856">
+<div created="20181220200358763" creator="Mohammad" modified="20190103225551254" modifier="Mohammad" title="$:/state/tab/sidebar--595412856">
 <pre>Contents</pre>
 </div>
 <div created="20181228053605418" creator="Mohammad" modified="20181228053608783" modifier="Mohammad" title="$:/state/tabs/controlpanel/toolbars-1345989671">
@@ -10800,17 +10830,17 @@ exports.hljs = hljs;</pre>
 <div created="20181228113000471" creator="Mohammad" modified="20181228113028351" modifier="Mohammad" title="$:/state/toc/Contents-abbr--652471482">
 <pre>close</pre>
 </div>
-<div created="20181223192507193" creator="Mohammad" modified="20181229054954065" modifier="Mohammad" title="$:/state/toc/Contents-abbr-1843068618">
-<pre>close</pre>
+<div created="20181223192507193" creator="Mohammad" modified="20190103230211756" modifier="Mohammad" title="$:/state/toc/Contents-abbr-1843068618">
+<pre>open</pre>
 </div>
-<div created="20181223192515200" creator="Mohammad" modified="20181228114504005" modifier="Mohammad" title="$:/state/toc/Contents-bibtex-1843068618">
-<pre>close</pre>
+<div created="20181223192515200" creator="Mohammad" modified="20190103230209772" modifier="Mohammad" title="$:/state/toc/Contents-bibtex-1843068618">
+<pre>open</pre>
 </div>
 <div created="20181223192510576" creator="Mohammad" modified="20181228090539516" modifier="Mohammad" title="$:/state/toc/Contents-find-macro-1843068618">
 <pre>open</pre>
 </div>
-<div created="20181223192512800" creator="Mohammad" modified="20181228113914334" modifier="Mohammad" title="$:/state/toc/Contents-footnote-1843068618">
-<pre>close</pre>
+<div created="20181223192512800" creator="Mohammad" modified="20190103230207814" modifier="Mohammad" title="$:/state/toc/Contents-footnote-1843068618">
+<pre>open</pre>
 </div>
 <div created="20181223192216361" creator="Mohammad" modified="20181223192216361" modifier="Mohammad" title="$:/state/toc/Contents/abbr-demo/abbr-list--1037358605">
 <pre>open</pre>
@@ -10824,8 +10854,8 @@ exports.hljs = hljs;</pre>
 <div list="[[Refnotes Plugin]] help/abbreviation help/footnote help/bibliography" title="$:/StoryList">
 <pre></pre>
 </div>
-<div created="20181221123026481" creator="Mohammad" modified="20181230154030076" modifier="Mohammad" title="$:/temp/advancedsearch">
-<pre>Installation</pre>
+<div created="20181221123026481" creator="Mohammad" modified="20190103123000033" modifier="Mohammad" title="$:/temp/advancedsearch">
+<pre>controlpanel</pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
 <pre>{
@@ -10872,11 +10902,11 @@ exports.hljs = hljs;</pre>
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;1280&quot;
+            &quot;text&quot;: &quot;1536&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;1024&quot;
+            &quot;text&quot;: &quot;864&quot;
         }
     }
 }</pre>
@@ -12978,44 +13008,6 @@ The bibtex code contains several macros
 &lt;/$vars&gt;
 \end
 </pre>
-</div>
-<div created="20181213121411187" creator="Mohammad" modified="20181228075207837" modifier="Mohammad" tags="find-macro $:/tags/Macro" title="macro/find">
-<pre>\define find(text, begin, end, output:&quot;simple&quot;)
-&lt;$vars 
-  fulltext=&lt;&lt;__text__&gt;&gt;
-  start=&lt;&lt;__begin__&gt;&gt;
-  stop=&lt;&lt;__end__&gt;&gt;
-  output-macro=&lt;&lt;__output__&gt;&gt;
-&gt;
-&lt;$list variable=&quot;p1&quot; filter=&quot;[&lt;fulltext&gt;splitbefore&lt;start&gt;]&quot;&gt;
-&lt;$list variable=&quot;p2&quot; filter=&quot;[&lt;fulltext&gt;removeprefix&lt;p1&gt;]&quot;&gt;
-&lt;$list variable=&quot;p3&quot; filter=&quot;[&lt;p2&gt;splitbefore&lt;stop&gt;removesuffix&lt;stop&gt;]&quot;&gt;
-&lt;$macrocall $name=&lt;&lt;output-macro&gt;&gt; p=&lt;&lt;p3&gt;&gt; /&gt;
-&lt;$macrocall $name=&quot;find&quot;
-  text={{{[&lt;p2&gt;removeprefix&lt;p3&gt;removeprefix&lt;stop&gt;]}}}
-  begin=&lt;&lt;start&gt;&gt;
-  end=&lt;&lt;stop&gt;&gt;
-  output=&lt;&lt;output-macro&gt;&gt;
-/&gt;
-&lt;/$list&gt;
-&lt;/$list&gt;
-&lt;/$list&gt;
-&lt;/$vars&gt;
-\end
-
-\define simple(p)
-&lt;$text text=&lt;&lt;__p__&gt;&gt; /&gt;
-\end
-
-\define simple-list(p)
-&lt;li&gt;&lt;$text text=&lt;&lt;__p__&gt;&gt;/&gt;&lt;/li&gt;
-\end
-
-!! Summary
-* `find` is a macro to search a text and find all snippets delimited between values of `begin` and `end` delimiters
-* `simple` is a macro used by `find` to show the output in a simple format
-* `simple-list` is a macro used by `find` to show the output in a simple list format. The ordered and unordered list
-can be used if the call to `find` macro wrapped in a `div` with suitable type e.g `ol` or `ul`.</pre>
 </div>
 <div created="20181214095749808" creator="Mohammad" modified="20181228113907925" modifier="Mohammad" tags="$:/tags/Macro" title="macro/footnote">
 <pre>\define fnote(note)
