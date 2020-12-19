@@ -9,6 +9,6 @@ Simply download and import the below tiddler into your wiki
 
 # Tutorial and demo
 Have a look at
-https://kookma.github.io/Refnotes/
+https://kookma.github.io/TW-Refnotes/
 
 for extensive demo and help.
