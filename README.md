@@ -2,13 +2,24 @@
 Refnotes is a set of macros and stylesheets for creating abbreviation, footnote and reference (citations). It also used to make tables of footnotes, abbreviations and also bibliography table.
 
 # Installation
-Simply download and import the below tiddler into your wiki
+For installation see
 
 
-[Refnotes plugin](https://github.com/kookma/Refnotes/blob/master/release/%24__plugins_.mr_refnotes.tid).
+[Refnotes plugin](https://kookma.github.io/TW-Refnotes/#Refnotes%20Plugin).
 
 # Tutorial and demo
-Have a look at
+For extensive demo and help see
+
 https://kookma.github.io/TW-Refnotes/
 
-for extensive demo and help.
+
+# Note
+Refnotes plugin is under overhaul and a new release will be available in mid winter 2021. This new version will only work
+with Tiddlywiki 5.1.23+
+
+Some new features are implemented including:
+
+- Book, dissertation, website, journal style
+- Better viewtemplate for bibtex entry
+- Node.js version
+- installation through Kookma plugin library
