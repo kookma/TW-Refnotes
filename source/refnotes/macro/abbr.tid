@@ -1,0 +1,76 @@
+created: 20181022071907838
+modified: 20201211110124599
+tags: $:/tags/Macro
+title: $:/plugins/kookma/refnotes/macro/abbr
+type: text/vnd.tiddlywiki
+
+\define abbr(term:"", dict:"Glossary")
+<$set name="abbreviation" 
+ tiddler="""$dict$"""
+ index="""$term$"""
+ emptyValue="Term not found">
+ <abbr title=<<abbreviation>> >$term$</abbr>
+</$set>
+\end
+
+\define term-not-found()
+<span style="color:red;font-style: oblique;">Term not found</span>
+\end
+
+\define abbr-list(indexes, dtiddler:"" title:"Empty")
+<$reveal tag="div" type="nomatch" default="Empty" text=<<__title__>> >
+<h2>$title$</h2>
+</$reveal>
+<table class="refnotes-table-borderless">
+<$list filter="""$indexes$ +[sort[title]]""" variable="item">
+<tr>
+<td style="color:blue;"><<item>></td>
+<td>
+ <$set name="term" tiddler="""$dtiddler$"""  index=<<item>>  emptyValue=<<term-not-found>> >
+ <<term>>
+ </$set>
+</td>
+</tr>
+</$list>
+</table>
+\end
+
+
+\define output-item(p)
+<$set name="items" value=<<__p__>> >
+<$set name="item" value={{{ [enlist<items>limit[1]] }}} >
+<$set name="item-noquotes" value={{{ [<item>removeprefix["]removesuffix["]] [<item>removeprefix[']removesuffix[']] ~[<item>] }}} emptyValue="NOT_FOUND">
+<<item-noquotes>>
+</$set>
+</$set>
+</$set>
+\end
+
+
+\define showabbrs(filter:"[<currentTiddler>]", dtiddler:"Glossary", title:"Empty")
+<$wikify name="term-indexes" text="""
+<$set name="dictionary" value=<<__dtiddler__>> >
+<$list filter=<<__filter__>> >
+<$macrocall $name="find" text={{!!text}} begin="<<abbr " end=">>" output="output-item"/>
+</$list>
+</$set>
+"""> 
+<$macrocall $name="abbr-list" indexes=<<term-indexes>> dtiddler=<<__dtiddler__>> title=<<__title__>> />
+</$wikify>
+\end
+
+! Macros
+<<<
+<<show-macro>>
+<<<
+
+! Summary
+* `abbr` inserts an abbreviation
+* `abbr-list` creates a glossary table from list of terms given through indexes parameter. The output is sorted alphabetically. This macro is normally called by `showabbrs`, but can be called directly to make a glossary table from a list of given terms.
+* `showabbrs` creates a glossary table from the abbreviation terms found in tiddlers text given by `filter` parameter. It uses two other macros to do the job.
+** `find`: to find the `<<abbr ....>>` occurrences
+** `output-item`:  to extract the abbreviation terms and remove the surrounding quotes
+** `abbr-list` to create the glossary table from the output of `find` macro
+
+! How showabbrs works?
+It actually uses the find macro to find all occurrences of `<<abbr...>>` and uses `output-item` to extract then the glossary term and stores the result (a list of terms separated by space) in the variable `term-indexes`. This list then passed to `abbr-list` macro to be displayed as a glossary table. In facts `abbr-list` reads the definition of each term in `dtiddler` dictionary and displays the result as a table row.

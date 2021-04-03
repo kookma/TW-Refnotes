@@ -1,0 +1,23 @@
+created: 20210403165027581
+modified: 20210403180744227
+tags: $:/tags/Refnotes/Template
+title: $:/plugins/kookma/refnotes/templates/default
+type: text/vnd.tiddlywiki
+
+\define mainFields() bibtex-title bibtex-author bibtex-year bibtex-doi bibtex-entry-type
+\define display-bibtex-field()
+<div class="refnotes-bibtex-field">
+<span><$text text={{{ [<currentField>removeprefix[bibtex-]titlecase[]] }}} /></span>
+<span><$transclude tiddler=<<currentTiddler>> field=<<currentField>> mode=inline /></span>
+</div>
+\end
+
+<!-- display main bibtex fields -->
+<$list filter="[enlist<mainFields>]" variable=currentField>
+<<display-bibtex-field>>
+</$list>
+
+<!-- display other bibtex fields -->
+<$list filter="[<currentTiddler>fields[]prefix[bibtex]sort[]] -[enlist<mainFields>]" variable=currentField>
+<<display-bibtex-field>>
+</$list>

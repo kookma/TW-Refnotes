@@ -1,0 +1,40 @@
+/* tooltip class used for ref, fnote and other macros */
+.mr-tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer; 
+}
+
+.mr-tooltip .mr-tooltiptext{
+  font-size: 0.90em; /* change if it is too small */
+}
+
+.mr-tooltip .mr-tooltiptext {
+    visibility: hidden;
+    background-color: #fff;
+    color: #222222; 
+    text-align: left;
+    border-radius: 2px;
+    padding: 5px 10px;
+    max-width: 30vw;
+    max-height:20em;
+    overflow-y: auto;
+    cursor: auto;
+    width: max-content;
+    width: -moz-max-content;
+    width: -webkit-max-content;
+    width: -o-max-content;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -40px;
+    box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+}
+
+.mr-tooltip:hover .mr-tooltiptext {
+    visibility: visible;
+    /*opacity: 0.9;*/
+}

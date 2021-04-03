@@ -1,0 +1,28 @@
+caption: Biblography
+created: 20181220153648454
+description: This code adds the `bibtex-entry` tag to all tiddlers imported by `BibTeX Importer` plugin thus having a `bibtex-title` field.
+modified: 20210403181137493
+tags: $:/tags/SideBar bibtex
+title: $:/plugins/kookma/refnotes/bibtex/button/set-tag
+type: text/vnd.tiddlywiki
+
+!! List bibtex tiddlers
+All tiddlers contain bibliography data in Bibtext format.
+
+<ol>
+<$list filter="[has[bibtex-title]]" variable="v">
+<li><$link to=<<v>>><$text text=<<v>> /></$link></li>
+</$list>
+</ol>
+
+---
+
+
+<$button> Add "bibtex-entry" tag 
+<$list filter="[has[bibtex-title]]">
+<$fieldmangler>
+<$action-sendmessage $message="tm-add-tag" $param="bibtex-entry" />
+</$fieldmangler>
+</$list>
+</$button>
+

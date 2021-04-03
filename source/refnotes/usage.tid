@@ -1,0 +1,50 @@
+created: 20181228094933760
+modified: 20201211110124880
+tags: refnotes
+title: $:/plugins/kookma/refnotes/usage
+type: text/vnd.tiddlywiki
+
+! Usage
+!! Abbreviation
+* Insert abbreviation
+```
+<<abbr term>>
+<<abbr term dict:"dictionary-tiddler">>
+```
+
+* List abbreviations (glossary table)
+```
+<<showabbrs filter dtiddler title>>
+<<abbr-list indexes dtiddler title>>
+```
+
+!! Bibliography
+* Insert reference
+```
+<<ref tid>>
+<<ref "tid-title-with-space">>
+<<ref [[tid-title-with-space]]>>
+```
+
+* List references
+```
+<<showrefs filter class title>>
+```
+> It is recommended to install the official plugin "Bibtex Importer". Also see [[bibtex naming rules|$:/plugins/kookma/bibtex/naming-rules]]
+> A Biblography tab is added to sidebar. It is used to tag new imported bibliography tiddlers and also can be used for citations.
+
+!! Footnotes
+* Insert footnote
+```
+<<fnote note>>
+```
+
+* List footnotes
+```
+<<showfnotes filter class title>>
+```
+
+!! Documentation
+For detailed instruction, examples and demo see:
+
+https://kookma.github.io/Refnotes/
