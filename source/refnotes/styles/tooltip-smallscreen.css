@@ -1,5 +1,5 @@
 @media screen and (max-width: 960px) {
-.mr-tooltip .mr-tooltiptext {
+.refnotes-tooltip .refnotes-tooltiptext {
     /* Position the tooltip */
     position:fixed;
     top:0;
@@ -11,7 +11,7 @@
     z-index: 9999;
 }  
 
-.mr-tooltip:hover .mr-tooltiptext {
+.refnotes-tooltip:hover .refnotes-tooltiptext {
    opacity: 1;
 }  
   

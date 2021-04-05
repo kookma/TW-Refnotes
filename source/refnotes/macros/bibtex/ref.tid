@@ -1,23 +1,23 @@
 created: 20181210155346225
-modified: 20201211110124792
+modified: 20210405070107443
 tags: $:/tags/Macro
-title: $:/plugins/kookma/refnotes/macro/bibtex/ref
+title: $:/plugins/kookma/refnotes/macros/bibtex/ref
 type: text/vnd.tiddlywiki
 
 \define ref(tid)
 <$set name="ref-tid" tiddler=<<__tid__>> field="title" emptyValue="RefNotFound">
-<div class="mr-tooltip refcls">
+<div class="refnotes-tooltip refcls">
 <$reveal type="match" default=<<ref-tid>> text="RefNotFound">
 <$link overrideClass="link-refcls">
 [<$view tiddler=<<__tid__>> field="title"/>]
 </$link>
-<div class="mr-tooltiptext ref-notfound"><b>Warning</b>: Reference Not Found.<br>Click to create it:<<create-notexisted-ref "$tid$">></div>
+<div class="refnotes-tooltiptext ref-notfound"><b>Warning</b>: Reference Not Found.<br>Click to create it:<<create-notexisted-ref "$tid$">></div>
 </$reveal>
 <$reveal type="nomatch" default=<<ref-tid>> text="RefNotFound">
 [<$view tiddler=<<__tid__>> field="caption">
  <$view tiddler=<<__tid__>> field="title"></$view>
 </$view>]
-<div class="mr-tooltiptext">
+<div class="refnotes-tooltiptext">
 <$macrocall $name="displayref-onhover" refTid=<<ref-tid>> />
 </div>
 </$reveal>
@@ -48,18 +48,3 @@ type: text/vnd.tiddlywiki
 </$button>
 </$set>    
 \end
-
-
-
-! Macro
-<<<
-<<show-macro>>
-<<<
-
-! Summary
-The bibtex code contains several macros
-
-# `ref`: the macro to insert a reference into the text
-# `create-notexisted-ref`: called by `ref` to create a new reference, when it is not existed.
-# `bibliography`: the output macro used by find, displays a reference item.
-# `showbib` the macro scan the tiddler (tiddlers) for citations (references) and creates the references list. The `showbib` macro requires the `find` macro to show list of references.

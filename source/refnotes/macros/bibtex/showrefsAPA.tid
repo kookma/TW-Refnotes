@@ -1,0 +1,39 @@
+created: 20210404044342060
+modified: 20210405070107476
+tags: $:/tags/Macro
+title: $:/plugins/kookma/refnotes/macros/bibtex/showrefsAPA
+type: text/vnd.tiddlywiki
+
+\define showrefsAPA(filter:"[<currentTiddler>]", title:"Empty", class:"ref-list")
+<$reveal tag="div" type="nomatch" default="Empty" text=<<__title__>> >
+<h2>$title$</h2>
+</$reveal>
+<$wikify name="mylist" text="""
+<$list filter=<<__filter__>> >
+<$macrocall $name="find-refs" tid=<<currentTiddler>> />
+</$list>
+""">
+<ol class="$class$">
+<$list filter="[enlist<mylist>sort[]]" variable="myListItem">
+
+<$macrocall $name="custom_output" p=<<myListItem>> />
+</$list>
+</ol>
+</$wikify>
+\end
+
+\define custom_output(p)
+<$wikify name=p2 text=<<__p__>> >
+<$set name="curtid" tiddler=<<p2>> field="title" emptyValue="RefNotFound">
+<$reveal type="nomatch" default="RefNotFound" text=<<curtid>> >
+<li><$view field="bibtex-author" tiddler=<<curtid>>/> (<$view field="bibtex-year" tiddler=<<curtid>>/>), <span style="text-transform: capitalize;"><$view field="bibtex-title" tiddler=<<curtid>>/></span>,<i><$view field="bibtex-journal" tiddler=<<curtid>>/></i>, <$view field="bibtex-pages" tiddler=<<curtid>>/>. DOI <$view field="bibtex-doi" tiddler=<<curtid>>/>. </li>
+</$reveal>
+<$reveal type="match" default="RefNotFound" text=<<curtid>> >
+<li style="color:red;">Reference <b>$p$</b> NOT FOUND. Check your input.</li>
+</$reveal>
+</$set></$wikify>
+\end
+
+<!--Andres
+https://groups.google.com/g/tiddlywiki/c/UcJHW-HHPJU/m/IhuqbAguBQAJ
+-->

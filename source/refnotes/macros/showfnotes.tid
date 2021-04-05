@@ -1,0 +1,28 @@
+created: 20210404111935949
+modified: 20210405070107512
+tags: $:/tags/Macro
+title: $:/plugins/kookma/refnotes/macros/showfnotes
+type: text/vnd.tiddlywiki
+
+\define showfnotes(filter:"[<currentTiddler>]", title:"Empty" class:"fnote-list")
+<$reveal tag="div" type="nomatch" default="Empty" text=<<__title__>> >
+<h2>$title$</h2>
+</$reveal>
+<ol class="$class$">
+<$list filter=<<__filter__>> >
+<$macrocall $name="find" 
+   text={{!!text}}
+   begin='<<fnote' 
+   end='>>' 
+   output="output-fnote"
+/>
+</$list>
+</ol>
+\end
+
+\define output-fnote(p)
+<$vars output=$p$>
+<li><<output>></li>
+</$vars>
+\end
+

@@ -1,7 +1,7 @@
 created: 20181213121411187
-modified: 20201211110124764
-tags: exportme refnotes $:/tags/Macro
-title: $:/plugins/kookma/refnotes/macro/bibtex/find-refs
+modified: 20210405070107434
+tags: $:/tags/Macro
+title: $:/plugins/kookma/refnotes/macros/bibtex/find-refs
 type: text/vnd.tiddlywiki
 
 \define find-refs(tid)
@@ -25,8 +25,3 @@ regexp4="\[\[(.*?)\]\]"
 \define pwrapper() 
 [[[[$(p)$]]]]
 \end
-
-! Macro
-<<<
-<<show-macro>>
-<<<

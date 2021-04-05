@@ -1,7 +1,7 @@
 created: 20190117195536649
-modified: 20201211110124829
+modified: 20210405070107466
 tags: $:/tags/Macro
-title: $:/plugins/kookma/refnotes/macro/bibtex/showrefs
+title: $:/plugins/kookma/refnotes/macros/bibtex/showrefs
 type: text/vnd.tiddlywiki
 
 \define output-journal-article(p)
@@ -11,7 +11,7 @@ type: text/vnd.tiddlywiki
 <li><$view field="bibtex-author" tiddler=<<curtid>>/>, <span style="text-transform: capitalize;"><$view field="bibtex-title" tiddler=<<curtid>>/></span>,<i><$view field="bibtex-journal" tiddler=<<curtid>>/></i>, <b><$view field="bibtex-year" tiddler=<<curtid>>/></b>.</li>
 </$reveal>
 <$reveal type="match" default="RefNotFound" text=<<curtid>> >
-<li style="color:red;">Reference <b>$p$</b> NOT FOUND. Check your input.</li>
+<li>Reference <b>$p$</b> NOT FOUND. Check your input.</li>
 </$reveal>
 </$set></$wikify>
 \end
@@ -34,8 +34,3 @@ type: text/vnd.tiddlywiki
 </ol>
 </$wikify>
 \end
-
-! Macro
-<<<
-<<show-macro>>
-<<<

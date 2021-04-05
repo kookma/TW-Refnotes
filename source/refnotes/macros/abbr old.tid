@@ -1,7 +1,7 @@
-created: 20181022071907838
-modified: 20201211110124599
-tags: $:/tags/Macro
-title: $:/plugins/kookma/refnotes/macro/abbr
+created: 20210404093023785
+modified: 20210405070107425
+tags: disp
+title: $:/plugins/kookma/refnotes/macros/abbr old
 type: text/vnd.tiddlywiki
 
 \define abbr(term:"", dict:"Glossary")
@@ -58,19 +58,3 @@ type: text/vnd.tiddlywiki
 <$macrocall $name="abbr-list" indexes=<<term-indexes>> dtiddler=<<__dtiddler__>> title=<<__title__>> />
 </$wikify>
 \end
-
-! Macros
-<<<
-<<show-macro>>
-<<<
-
-! Summary
-* `abbr` inserts an abbreviation
-* `abbr-list` creates a glossary table from list of terms given through indexes parameter. The output is sorted alphabetically. This macro is normally called by `showabbrs`, but can be called directly to make a glossary table from a list of given terms.
-* `showabbrs` creates a glossary table from the abbreviation terms found in tiddlers text given by `filter` parameter. It uses two other macros to do the job.
-** `find`: to find the `<<abbr ....>>` occurrences
-** `output-item`:  to extract the abbreviation terms and remove the surrounding quotes
-** `abbr-list` to create the glossary table from the output of `find` macro
-
-! How showabbrs works?
-It actually uses the find macro to find all occurrences of `<<abbr...>>` and uses `output-item` to extract then the glossary term and stores the result (a list of terms separated by space) in the variable `term-indexes`. This list then passed to `abbr-list` macro to be displayed as a glossary table. In facts `abbr-list` reads the definition of each term in `dtiddler` dictionary and displays the result as a table row.

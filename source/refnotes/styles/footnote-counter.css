@@ -8,7 +8,7 @@
 .refnotes-footnote:after {
   content: counter(fnote-count);
   font-size:small;
-  color:#0000ee;
+ /* color:#0000ee;*/
   vertical-align: super;
   line-height: 1.5;
   margin-left: -0.1em;

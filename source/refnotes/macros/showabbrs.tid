@@ -1,0 +1,53 @@
+created: 20210404111656614
+modified: 20210405070107504
+tags: $:/tags/Macro
+title: $:/plugins/kookma/refnotes/macros/showabbrs
+type: text/vnd.tiddlywiki
+
+\define showabbrs(filter:"[<currentTiddler>]", dtiddler:"Glossary", title:"Empty")
+<$wikify name="term-indexes" text=<<find-all-items>> > 
+<$macrocall $name="abbr-list" indexes=<<term-indexes>> />
+</$wikify>
+\end
+
+\define find-all-items()
+<$list filter=<<__filter__>> >
+<$macrocall $name="find" text={{!!text}} begin="<<abbr " end=">>" output="output-item"/>
+</$list>
+\end
+
+\define output-item(p)
+<$set name="items" value=<<__p__>> >
+<$set name="item" value={{{ [enlist<items>limit[1]] }}} >
+<$set name="item-noquotes" value={{{ [<item>removeprefix["]removesuffix["]] [<item>removeprefix[']removesuffix[']] ~[<item>] }}} emptyValue="NOT_FOUND">
+<<item-noquotes>>
+</$set>
+</$set>
+</$set>
+\end
+
+
+\define abbr-list(indexes)
+<$reveal tag="div" type="nomatch" default="Empty" text=<<__title__>> >
+<h2><$text text=<<__title__>> /></h2>
+</$reveal>
+<table class="refnotes-table-borderless">
+<$list filter="""$indexes$ +[sort[title]]""" variable="item">
+<tr>
+<td class="refnotes-abbr-term"><<item>></td>
+<td>
+ <$set name="term" tiddler=<<__dtiddler__>>  index=<<item>>  emptyValue=<<term-not-found>> >
+   <<term>>
+ </$set>
+</td>
+</tr>
+</$list>
+</table>
+\end
+
+
+\define term-not-found()
+<span class="refnotes-abbr-term-not-found">Term not found</span>
+\end
+
+
