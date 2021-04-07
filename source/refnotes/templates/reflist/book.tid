@@ -1,0 +1,20 @@
+created: 20210406035831544
+list: book
+modified: 20210407060037431
+tags: $:/tags/Refnotes/ReflistTemplate
+title: $:/plugins/kookma/refnotes/templates/reflist/book
+type: text/vnd.tiddlywiki
+
+<$wikify name=bibtexEntryTiddler text=<<reference>> >
+<$set name=currentTiddler tiddler=<<bibtexEntryTiddler>> field=title emptyValue="RefNotFound">
+<$reveal type="nomatch" default="RefNotFound" text=<<currentTiddler>> >
+<li><$view field="bibtex-author"/>. (<$view field="bibtex-year"/>). <span style="text-transform: capitalize;font-style:italic;"><$view field="bibtex-title"/></span>. (<$view field="bibtex-edition"/>). <$view field="bibtex-publisher"/>.</li>
+</$reveal>
+<$reveal type="match" default="RefNotFound" text=<<currentTiddler>> >
+<li>Reference <b><$text text=<<reference>>/></b> NOT FOUND. Check your input.</li>
+</$reveal>
+</$set></$wikify>
+
+<!--
+Author. (Year). Title [Translated Title] (|Translator, Trans.;| Editor, Ed.^Eds.| Edition ed.,| Vol. Volume|)| [Type of Work]|. Publisher|. `https://doi.org/`DOI (Original Publication)
+-->

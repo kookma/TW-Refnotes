@@ -1,7 +1,7 @@
 created: 20210404044342060
-modified: 20210405070107476
+modified: 20210407042223483
 tags: $:/tags/Macro
-title: $:/plugins/kookma/refnotes/macros/bibtex/showrefsAPA
+title: $:/plugins/kookma/refnotes/macros/apa/showrefsAPA
 type: text/vnd.tiddlywiki
 
 \define showrefsAPA(filter:"[<currentTiddler>]", title:"Empty", class:"ref-list")
@@ -10,7 +10,7 @@ type: text/vnd.tiddlywiki
 </$reveal>
 <$wikify name="mylist" text="""
 <$list filter=<<__filter__>> >
-<$macrocall $name="find-refs" tid=<<currentTiddler>> />
+<$macrocall $name="find-refsAPA" tid=<<currentTiddler>> />
 </$list>
 """>
 <ol class="$class$">

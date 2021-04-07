@@ -1,11 +1,11 @@
 created: 20210403164845276
 list: article
-modified: 20210405114045596
+modified: 20210406122231110
 tags: $:/tags/Refnotes/Template
-title: $:/plugins/kookma/refnotes/templates/article
+title: $:/plugins/kookma/refnotes/viewtemplates/article
 type: text/vnd.tiddlywiki
 
 \define mainFields() bibtex-title bibtex-author bibtex-journal bibtex-year bibtex-pages bibtex-number bibtex-volume bibtex-doi
 
 <!-- display fields -->
-<$transclude tiddler="$:/plugins/kookma/refnotes/templates/helper"/>
+<$transclude tiddler="$:/plugins/kookma/refnotes/viewtemplates/helper"/>

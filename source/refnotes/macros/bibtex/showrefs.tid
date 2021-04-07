@@ -1,21 +1,8 @@
 created: 20190117195536649
-modified: 20210405070107466
+modified: 20210407093759516
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/bibtex/showrefs
 type: text/vnd.tiddlywiki
-
-\define output-journal-article(p)
-<$wikify name=p2 text=<<__p__>> >
-<$set name="curtid" tiddler=<<p2>> field="title" emptyValue="RefNotFound">
-<$reveal type="nomatch" default="RefNotFound" text=<<curtid>> >
-<li><$view field="bibtex-author" tiddler=<<curtid>>/>, <span style="text-transform: capitalize;"><$view field="bibtex-title" tiddler=<<curtid>>/></span>,<i><$view field="bibtex-journal" tiddler=<<curtid>>/></i>, <b><$view field="bibtex-year" tiddler=<<curtid>>/></b>.</li>
-</$reveal>
-<$reveal type="match" default="RefNotFound" text=<<curtid>> >
-<li>Reference <b>$p$</b> NOT FOUND. Check your input.</li>
-</$reveal>
-</$set></$wikify>
-\end
-
 
 \define showrefs(filter:"[<currentTiddler>]", title:"Empty", class:"ref-list")
 <$reveal tag="div" type="nomatch" default="Empty" text=<<__title__>> >
@@ -27,9 +14,17 @@ type: text/vnd.tiddlywiki
 </$list>
 """>
 <ol class="$class$">
-<$list filter="[enlist<mylist>sort[]]" variable="myListItem">
+<$list filter="[enlist<mylist>sort[]]" variable="reference">
 
-<$macrocall $name="output-journal-article" p=<<myListItem>> />
+<$vars currentType={{{[<reference>get[bibtex-entry-type]lowercase[]] ~[[miscellaneous]]}}} >
+<$set name="bodyLookup" 
+      filter="[all[tiddlers+shadows]tag[$:/tags/Refnotes/ReflistTemplate]contains:list<currentType>] +[limit[1]get[title]]"
+            value=<<bodyLookup>> 
+      emptyValue="$:/plugins/kookma/refnotes/templates/reflist/default">
+<$transclude tiddler=<<bodyLookup>> field="text" mode="inline"/>
+</$set>
+</$vars>
+
 </$list>
 </ol>
 </$wikify>

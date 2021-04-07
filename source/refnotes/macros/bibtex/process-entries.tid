@@ -1,5 +1,5 @@
 created: 20210405065852415
-modified: 20210405082618074
+modified: 20210406041938213
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/bibtex/process-entries
 type: text/vnd.tiddlywiki
@@ -7,8 +7,7 @@ type: text/vnd.tiddlywiki
 \define title-tolowercase()
 <$vars curTitle=<<currentTiddler>> newTitle={{{[<currentTiddler>lowercase[]]}}}>
 <$list filter="[<curTitle>!match<newTitle>]" variable=null>
-<$action-setfield $tiddler=<<currentTiddler>> title=<<newTitle>> /> <!-- CREATES NEW TIDDLER -->
-<$action-deletetiddler $tiddler=<<currentTiddler>> /> <!-- REMOVES OLD TIDDLER --> 
+<$action-sendmessage $message="tm-rename-tiddler" from=<<currentTiddler>> to=<<newTitle>> />
 </$list>
 </$vars>
 \end

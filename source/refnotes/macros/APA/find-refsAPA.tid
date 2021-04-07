@@ -1,12 +1,12 @@
-created: 20181213121411187
-modified: 20210407034817363
+created: 20210405184939849
+modified: 20210407042200801
 tags: $:/tags/Macro
-title: $:/plugins/kookma/refnotes/macros/bibtex/find-refs
+title: $:/plugins/kookma/refnotes/macros/apa/find-refsAPA
 type: text/vnd.tiddlywiki
 
-\define find-refs(tid)
-<$vars regexp="(?g)<<ref .+?>>"
-regexp2='<<ref "*(.*?)"*>>'
+\define find-refsAPA(tid)
+<$vars regexp="(?g)<<refAPA .+?>>"
+regexp2='<<refAPA "*(.*?)"*>>'
 regexp3="^'(.*?)'"
 regexp4="\[\[(.*?)\]\]"
 >

@@ -1,10 +1,10 @@
 created: 20210403164856132
 list: book
-modified: 20210405113117773
+modified: 20210406122231119
 tags: $:/tags/Refnotes/Template
-title: $:/plugins/kookma/refnotes/templates/book
+title: $:/plugins/kookma/refnotes/viewtemplates/book
 type: text/vnd.tiddlywiki
 
 \define mainFields() bibtex-title bibtex-author bibtex-year bibtex-publisher bibtex-publisher
 
-<$transclude tiddler="$:/plugins/kookma/refnotes/templates/helper"/>
+<$transclude tiddler="$:/plugins/kookma/refnotes/viewtemplates/helper"/>

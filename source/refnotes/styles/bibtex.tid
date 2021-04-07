@@ -1,5 +1,5 @@
 created: 20181220161713706
-modified: 20210404194044995
+modified: 20210405174933977
 tags: $:/tags/Stylesheet
 title: $:/plugins/kookma/refnotes/styles/bibtex
 type: text/vnd.tiddlywiki
@@ -29,7 +29,7 @@ type: text/vnd.tiddlywiki
 .refcls{
 /* color:#00008B;*/
  color: <<colour tiddler-link-foreground>>; 
- text-transform: capitalize;
+/* text-transform: capitalize;*/
 }
 
 .ref-notfound{

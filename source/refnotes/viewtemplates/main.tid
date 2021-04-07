@@ -1,7 +1,7 @@
 created: 20181220142502642
-modified: 20210403145918588
+modified: 20210406181431019
 tags: $:/tags/ViewTemplate
-title: $:/plugins/kookma/refnotes/viewtemplate/bibtex
+title: $:/plugins/kookma/refnotes/viewtemplates/main
 type: text/vnd.tiddlywiki
 
 <$list filter="[all[current]has[bibtex-title]]">
@@ -9,7 +9,7 @@ type: text/vnd.tiddlywiki
 <$set name="bodyLookup" 
       filter="[all[tiddlers+shadows]tag[$:/tags/Refnotes/Template]contains:list<currentType>] +[limit[1]get[title]]"
 			value=<<bodyLookup>> 
-      emptyValue="$:/plugins/kookma/refnotes/templates/default">
+      emptyValue="$:/plugins/kookma/refnotes/viewtemplates/default">
 <$transclude tiddler=<<bodyLookup>> field="text" mode="inline"/>
 </$set>
 </$vars>
