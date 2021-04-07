@@ -1,7 +1,7 @@
 caption: Biblography
 created: 20181220153648454
 description: This code adds the `bibtex-entry` tag to all tiddlers imported by `BibTeX Importer` plugin thus having a `bibtex-title` field.
-modified: 20210407135154632
+modified: 20210407143016545
 tags: $:/tags/SideBar
 title: $:/plugins/kookma/refnotes/bibtex/library
 type: text/vnd.tiddlywiki
@@ -19,16 +19,18 @@ type: text/vnd.tiddlywiki
 <$vars sField={{{[<searchTid>get[field]] ~[[bibtex-author]]}}} sTerm={{{ [<searchTid>get[text]] }}} >
 
 <!-- show hide entry details -->
-<$button>{{$:/core/images/chevron-down}}
+<div class="refnotes-library" style="margin:10px">
+<$button class="tc-btn-invisible">{{$:/core/images/chevron-down}}
 <$list filter="[subfilter<searchFilter>]">
 <$action-setfield $tiddler=<<tTemp>> text=show />
 </$list>
 </$button>
-<$button>{{$:/core/images/chevron-up}}
+<$button class="tc-btn-invisible">{{$:/core/images/chevron-up}}
 <$list filter="[subfilter<searchFilter>]">
 <$action-deletetiddler $tiddler=<<tTemp>> />
 </$list>
 </$button>
+</div>
 
 <!-- show the library data -->
 <ol>
