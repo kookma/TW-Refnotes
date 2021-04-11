@@ -1,0 +1,17 @@
+/* Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3 */ 
+.refnotes-abbr abbr[title] {
+	color: inherit;
+	font-style: normal;
+	text-decoration: none;
+	border-bottom: 1px dotted #aaa;
+	cursor: help;
+}
+
+.refnotes-abbr-term-not-found{
+/*	color:red;*/
+	font-style: oblique;
+}
+
+.refnotes-abbr-term{
+/*	color:blue;*/
+}
