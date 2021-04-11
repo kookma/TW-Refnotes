@@ -1,9 +1,9 @@
 caption: Biblography
 created: 20181220153648454
 description: This code adds the `bibtex-entry` tag to all tiddlers imported by `BibTeX Importer` plugin thus having a `bibtex-title` field.
-modified: 20210407143016545
+modified: 20210410194617262
 tags: $:/tags/SideBar
-title: $:/plugins/kookma/refnotes/bibtex/library
+title: $:/plugins/kookma/refnotes/ui/bibtexlibrary
 type: text/vnd.tiddlywiki
 
 \define dispEntry()
@@ -16,16 +16,17 @@ type: text/vnd.tiddlywiki
 \define searchFilter() [has[bibtex-title]search:$(sField)$[$(sTerm)$]]
 
 \define bibLibrary()
-<$vars sField={{{[<searchTid>get[field]] ~[[bibtex-author]]}}} sTerm={{{ [<searchTid>get[text]] }}} >
+<$vars sField={{{[<searchTid>get[field]] ~[[bibtex-author]]}}} sTerm={{{[<searchTid>get[text]]}}}>
 
 <!-- show hide entry details -->
-<div class="refnotes-library" style="margin:10px">
-<$button class="tc-btn-invisible">{{$:/core/images/chevron-down}}
+<div class="tc-search refnotes-library" style="margin:10px 0 0 20px;">
+Show and Hide Details: &nbsp;
+<$button class="tc-btn-invisible">{{$:/core/images/down-arrow}}
 <$list filter="[subfilter<searchFilter>]">
 <$action-setfield $tiddler=<<tTemp>> text=show />
 </$list>
 </$button>
-<$button class="tc-btn-invisible">{{$:/core/images/chevron-up}}
+<$button class="tc-btn-invisible">{{$:/core/images/up-arrow}}
 <$list filter="[subfilter<searchFilter>]">
 <$action-deletetiddler $tiddler=<<tTemp>> />
 </$list>
@@ -38,10 +39,10 @@ type: text/vnd.tiddlywiki
 <li><<dispEntry>></li>
 </$list>
 </ol>
+</$vars>
 \end
 
-
-
+<!-- interface-->
 <<process-entries>>
 
 [[Bibliography Table]]

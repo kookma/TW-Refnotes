@@ -1,10 +1,12 @@
 created: 20190117195536649
-modified: 20210407093759516
+modified: 20210411101848413
 tags: $:/tags/Macro
-title: $:/plugins/kookma/refnotes/macros/bibtex/showrefs
+title: $:/plugins/kookma/refnotes/macros/apa/showrefs
 type: text/vnd.tiddlywiki
 
-\define showrefs(filter:"[<currentTiddler>]", title:"Empty", class:"ref-list")
+\define showrefs(filter:"[<currentTiddler>]", title:"Empty", class:"ref-list", emptyMessage:"")
+<$vars leftDelimiter="<<ref ">
+<$list filter="[subfilter<__filter__>search:text:literal<leftDelimiter>limit[1]]" variable=null emptyMessage=<<__emptyMessage__>> ><!-- check to see if there is any citation -->
 <$reveal tag="div" type="nomatch" default="Empty" text=<<__title__>> >
 <h2>$title$</h2>
 </$reveal>
@@ -14,7 +16,7 @@ type: text/vnd.tiddlywiki
 </$list>
 """>
 <ol class="$class$">
-<$list filter="[enlist<mylist>sort[]]" variable="reference">
+<$list filter="[enlist<mylist>trim[]sort[]]" variable="reference">
 
 <$vars currentType={{{[<reference>get[bibtex-entry-type]lowercase[]] ~[[miscellaneous]]}}} >
 <$set name="bodyLookup" 
@@ -28,4 +30,6 @@ type: text/vnd.tiddlywiki
 </$list>
 </ol>
 </$wikify>
+</$list>
+</$vars>
 \end

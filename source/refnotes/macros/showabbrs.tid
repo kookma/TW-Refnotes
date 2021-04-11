@@ -1,12 +1,12 @@
 created: 20210404111656614
-modified: 20210405070107504
+modified: 20210409064928200
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/showabbrs
 type: text/vnd.tiddlywiki
 
-\define showabbrs(filter:"[<currentTiddler>]", dtiddler:"Glossary", title:"Empty")
+\define showabbrs(filter:"[<currentTiddler>]", dtiddler:"Glossary", title:"Empty", emptyMessage:"")
 <$wikify name="term-indexes" text=<<find-all-items>> > 
-<$macrocall $name="abbr-list" indexes=<<term-indexes>> />
+<$macrocall $name="abbr-list" dtiddler=<<__dtiddler__>> indexes=<<term-indexes>> title=<<__title__>> emptyMessage=<<__emptyMessage__>> />
 </$wikify>
 \end
 
@@ -27,7 +27,8 @@ type: text/vnd.tiddlywiki
 \end
 
 
-\define abbr-list(indexes)
+\define abbr-list(dtiddler, indexes, title:"Empty", emptyMessage)
+<$list filter="$indexes$ +[limit[1]]" variable=null emptyMessage=<<__emptyMessage__>> ><!-- check to see if there is any abbreviations -->
 <$reveal tag="div" type="nomatch" default="Empty" text=<<__title__>> >
 <h2><$text text=<<__title__>> /></h2>
 </$reveal>
@@ -43,6 +44,7 @@ type: text/vnd.tiddlywiki
 </tr>
 </$list>
 </table>
+</$list>
 \end
 
 
