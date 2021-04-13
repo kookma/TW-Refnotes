@@ -244,6 +244,12 @@ Error message and password prompt
 
 <li>$:/SpellCheck_EditorPreview</li>
 
+<li>$:/state/advancedsearch/currentTab</li>
+
+<li>$:/state/tab--1498284803</li>
+
+<li>$:/state/tab/sidebar--595412856</li>
+
 <li>$:/status/RequireReloadDueToPluginChange</li>
 
 <li>$:/StoryList</li>
@@ -620,8 +626,6 @@ Error message and password prompt
 
 <li>Convert Bibtex Entry to Lowercase</li>
 
-<li>Delete</li>
-
 <li>demo</li>
 
 <li>demo/abbr-list-macro</li>
@@ -858,8 +862,6 @@ Error message and password prompt
 
 <li>Refnotes Quick Tutorial</li>
 
-<li>Refnotes Source</li>
-
 <li>Refnotes Tutorial</li>
 
 <li>Refnotes/Bibtex modification</li>
@@ -892,8 +894,6 @@ Error message and password prompt
 
 <li>thesis.png</li>
 
-<li>ToDo</li>
-
 <li>Tools for Generating Bibtex Entry</li>
 
 <li>Tooltip issue with scroll on mobile browser</li>
@@ -915,8 +915,6 @@ Error message and password prompt
 <li>Wikindx facilitates academic writing in a browser</li>
 
 <li>wikipedia_2021</li>
-
-<li>working/bibtex</li>
 
 <li>xing-2019</li>
 
@@ -12622,6 +12620,15 @@ storeTitle=&lt;&lt;qualify "$:/temp/storeTitle"&gt;&gt;
 .tc-spell-check-preview {width:100%;}
 &lt;/style&gt;</pre>
 </div>
+<div created="20210413185253180" modified="20210413185253180" title="$:/state/advancedsearch/currentTab">
+<pre>$:/core/ui/AdvancedSearch/Filter</pre>
+</div>
+<div created="20210413185253180" modified="20210413185253180" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Filter</pre>
+</div>
+<div created="20210413185332972" modified="20210413185422973" title="$:/state/tab/sidebar--595412856">
+<pre>$:/plugins/kookma/refnotes/ui/bibtexlibrary</pre>
+</div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
@@ -14962,13 +14969,6 @@ On mouse hover content displayed shall be the same as citation style!</pre>
 &lt;$button actions=&lt;&lt;tolower&gt;&gt; &gt;To lowercase
 &lt;/$button&gt;</pre>
 </div>
-<div created="20210409070045678" modified="20210409164149243" tags="$:/tags/SideBar doc" title="Delete" type="text/vnd.tiddlywiki">
-<pre>;Keep and old
-&lt;&lt;list-links "[prefix[keep]]"&gt;&gt;
-
-;Nominate for delete
-&lt;&lt;list-links "[suffix[delete]]"&gt;&gt;</pre>
-</div>
 <div created="20210404034614957" list="[[Refnotes Quick Tutorial]] [[Tutorial Abbreviations]] [[Tutorial Footnotes]] [[Tutorial Reference Manager]]" modified="20210412152904708" tags="doc" title="demo" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
@@ -15884,8 +15884,7 @@ can be used if the call to `find` macro wrapped in a `div` with suitable type e.
 </pre>
 </div>
 <div caption="extracted ref macro" created="20210404083408120" modified="20210408141330716" tags="doc" title="extracted/ref macro" type="text/vnd.tiddlywiki">
-<pre>
-! Summary
+<pre>! Summary
 The bibtex code contains several macros
 
 # `ref`: the macro to insert a reference into the text
@@ -16671,9 +16670,6 @@ For detailed instruction, examples and demo see:
 
 https://kookma.github.io/Refnotes/</pre>
 </div>
-<div created="20210403154902109" modified="20210408140513238" tags="$:/tags/SideBar doc" title="Refnotes Source" type="text/vnd.tiddlywiki">
-<pre>{{$:/plugins/TheDiveO/ThirdFlow/ui/MoreSideBar/PluginSources}}</pre>
-</div>
 <div created="20180907045232431" modified="20210409072730828" tags="start doc" title="Refnotes Tutorial" type="text/vnd.tiddlywiki">
 <pre>''Refnotes'' is a reference manager tool that allows you to maintain a "personal library" of references, citations, footnotes and abbreviations in Tiddlywiki. It is a free web and desktop tool to store, organize and search all your references in Tiddlywiki.
 
@@ -16819,9 +16815,6 @@ A ''Reference List'' is very similar to a ''Works Cited'' list, and is a term us
 <div created="20210402162019058" modified="20210408140513287" tags="image doc" title="thesis.png" type="image/png">
 <pre>iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAHYgAAB2IBOHqZ2wAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAABzlSURBVHic7Z13tCVVlYe/16SO5JxaoEkNiEgOgoBIHBAQHFEMOCMCorhkGAdEBDEAYxgFBgMoCIgKkkaCSGoQkYxIk6OEppumoRPQ9Ht3/tjvNZfHe3V2VZ2qurfq962113rd99Q5+9St2veEffbuQQzFOGD7ftkAWBtYrv//F65QL9E8eoGZwHTgceBBYFK/vFqhXrWjB9gd+D3wBtCSSDpY5gGXAR8BRiBysR9wP9V/qRJJFpkMfBz7ERMpWBO4luq/QIkkhtwErItw8VFsDlX1lyaRxJRZwME4WchbsGZ8GTgbGFm1IkJEZlFgX2BpbHSbSBMNwHeBk9F8SdSbLYHlgT8mFWqaATgaOKlqJYQoic2xd/zG4Qo06Vfww8DVZNsyeQV4AXgOm2MJURZjgNWAlYBlM1zfwta7/hBTqW5jeeAl0i2mPAV8E9ikfHWFGJINgeOAR0n3LM8AVq9A347hXPw362XgKGCxSjQVIswiwGHAFPzP9aWVaNoBbAn04btJ92LDLSG6gRWB2/AbgQ9Vo2a1XIHv5lyDzbeE6CYWAy7B94zfXJGOlbEuvl//B4HFK9JRiLyMAu7CZwQ2r0jHSvg24RvyOnbaT4huZlXs1GDoef9JVQpWgWe19LTKtBMiLscTft6n0JDt/9UI34yZmMukEHVgDDCV8HO/4cAFdT5HvK2jzNWYk48QdWAOFiMgxHYDf9TZAKzvKOO5WUJ0E5c7yqw38EedDcBajjJ/K1wLIcrldkeZCQN/1NkALOko82LhWghRLtOxna0kFrwbdTYAIaeeVwnfKCG6kSmBz8cN/FFnAxA66jyvFC2EKJ/Qs73g3aizARBCBJABEKLByAAI0WBkAIRoMDIAQjQYGQAhGowMgBANRpluRUyWxIKwrAss1f/vJXjbKWsG5nw1B3gGO679KHLIqgwZAJGVHmBjYAfgg1jsxZUy1NMCnsV82K8HbgCeiKOiaDKTSD4T/VJ1qnU1mwP/jf2Ce4NRppWngFOBDUrqU914mOT7+4/qVCsPGYB4LAZ8BriP4l764eQOLAT2qKI7WSNkAJABiMFiwFdIF3++KHkBy9cgQxBGBgAZgDz0YCmmn6b6F38oQ/AFtIOVhAwAMgBZWQO4jupf9JD8Ba0RDIfbAMiKigF6gCOxh6MbMshsA9wDnEDzslwLBxoB+BkHXET1v+pZ5WYsAaww3CMA+QGItYErMeedPLyBrdjfDTwCPIZFXJ6BhV8HcwoaCazc3+7aWPblbfr/PyvbY34E+wL356hH1AiNAMK8n/Rp09tlCnAGsBP5XuCRwI7A97E4jVn1mQPsnkOPuqBFQGQAQuwAvEa2F20SsB/FzL0XBvYCrsqo2xvAHgXo1U3IACADkMQW+PLIDZZb8SVcicWWWPKWLEZgzxL17DTcBiBvjrDRwNbYPG4FYCw2LLwPS7f9Zs76B7MK8HEs5n9oB2NvLH/6cMzH5qkhXsBcX6/xKNgFbATcRLqUaC9iOwSXFKGQgz2A/wVWT3HNm9huxq2FaNTZPEzyms6DtKUHy8L2wMXAXIa3MtMxz61YC40fDbRXtFwRqR9Vsjx28CZNv3+NneyrmnHYekMa3V8indGoC4VNASZiJ7bSfAmTyL9FMxGz6FW9/APy9Zz9qJKFgRtJN4z+ciWaJvMxbLHP2497sZFqkyjEABxJ9pfwMWz4npW0lr8oeTlHH6rmVNL1c6tq1HSxCelOI/6yGjUrI6oBWAj4eaBCj0wm+1Dy5gjtx5DejPpXzXaY7p4+/hMbcXU678GODXu/uybtDEQzAD3YHDDWC/Qnsm0d/TWiDnmkL4PuVTMai7rj6d9UfFmVO4XVgcfx9e15fPki60A0A/CdQEVZ5PgMHZIByM538fVtJvC+inTMw9qYx6Gnj2dWpGPZRDEAe2APfOyXqBfz+kqDDEA2VsW3YNaH7bJ0K7sAbxHu53y6a4STldwGYBlgWqCSPPIs6dYDZACycQG+fn23KgUj8jV8fb2oKgVLJLcj0FnAoc7GpgE/xJxL1gTOARZ1XDcHf4becST7E0whvHA1BlgkUOY+YPGEz1t0zxHqdbGF15C+92Oegd2eLXkEcAt2sCiJFraLUOdDQ7kcgdbGhkoea/ob2nKN9/M557Ux5fmEzqYhNJfsphHATwnft7foznn/cGyAb6v6d1UpWBK5pgDnBC4ekJ8w/AjiZ846YsmrnrvioC4GYAUs1n7ovp1VlYIF4vF3mEe94wdkNgBL4XtwbiJ5SD66v5GyDECsMwd1MQBfJXzPZmKGom4si++g01erUrAEMhuAwwIXtjAX0fc4lNiQdC6beWS+Qx8PdTEA9xC+Z6dVpl3xfItw/x+uTLviyWwArg1c2MJOxnkpaz1ABuBt1id8v+YBq1WlYAksh28tYJOqFCyYTAZgDPbrnnRhL+kfnPMCdcoAxOUYwverqmO9ZXIx4fvwtcq0K5ZMUYE3wRJBJDEJ8xVPw2HYKTRRDjs7ylxQuBbVc46jTDdEPy6U9oW8TR3ls5yJn4N5ah2EhXpKE4higB1R6GcPi2EHf5KYg4XbqjvXYYuBSX4d22EL1nNL0ajDOZ3wkCnkZFEUswJ6aQpgbEH4O2zCyz/A5YTvxw6VaVccmaYA4x0V19l7qg54wjxdX7gWncN1jjLdcPS5MNoNQGhoPgsbPorOxZMq667CtegcbneUacLhoGFpNwChsEkzilRERMGT3KMRIaH7GRgKJ9FoA9C+CBiKENzp818BKwU+n94vWZgAHIsFhF0UWzh7GjtYMgm4ARslZmEMttD7AWwas0b///ViSUC/AzyUod7Z2K5VUmDQNTPUW0tuI3nh4LXqVNMioJMXSNb/kYz1bkE4ichc4Hws25CXjbDtutD3O4f0MSQGCIWT6+Y4j8ORyREolIChD98x3yKQAfARcr32zIkHMwL79Q2tprfLH0j+1V0JuJB0AWeeJdvzd0Wg3m4/Bj0UmXYBng1U2oNZbNG5hPLzZVnH2QRYL+U1+2JTg08M89lkLMFLmsQ0q2FThLTMDHy+CDAqQ721oH0N4AlH+c2x7K9Z2BRL17QS6YNqhDwUhX2XofuaxeElKbtSEmOxKcF7eTtaz9eBk8iekWrlDNe87igzylmudrQbgHsc5Xcj/RnyEZiT0RfIn4pMDM98bEidZAQGB2/x8GQ2dRZwDLbD9BpwXM66Hs9wTZIn4ABZFy9rxVKEIwG9SXpX3hMDdcYQrQEYoTWAOzPWe0ug3jLkPrKFY7smUO/sDHV2OpnWAGYQXiRaFPh8CkV2prvTaXUbochIWePiH0z+kUAengf+lWwGODTqqXJ3q+P4T8KWeAa+UcCKWLDOMn4dNAIw7iRZ/9fIPg0bBxwNXInl23sp0FYemYa5nf8R8z3Ik5z0n4G2Jueou1PJHBBkFXwBQc8PKDAC88Mu4+VvEW8rp9sNwGWE71VMx5eJwMmEt2k9MheLUrRxRP2WcrR7dcT2OoVcQUE9D1GL5MyxxzrriCWhrR4v3W4ATiF8r4pIALIi6TIPD5bbKSaN9w6Otr9XQLtVk8sAeI6UDrwMJ/DuIeXO+LK0xJQX/PcmkW43AJ8hfK++U1DbiwCXOtofLH8m7L+QlS852h/KV6HbyZ0ZKM0XeTfm3LEk5ifgzdMWU5QXwNiY8L26ucD2x5LOa/BpsgWI8RLybm1RT+e23JmB1sA8udJ4SLWw9YNQ9h2wIfsu+P2wLyY5gGMvli9+KMYSziw0QEj3Fp2dGWgEZsSWSCjTh+UMfLEgHfbCFgo9fJLiwpONxZ6vJCeyudg6Qd3cgXNlBhrgcIr7xU477FJuQD9XEe7HkQXr4EnZ/RLFGtP9HDpcXmD7VZLJD2AwZwK/LUC5s2lGUMqq8IT8OrBgHW5zlLmbYg3qIY4ydTUA0RhJ+DhlGvk74cAjQ6ERgJ/x+PoRc7ttML926HBNge1PwKaFSe33Us/MSBBpBACWJ2BP4sSRmwbsQ7YDKbEcffLSqloBB89gBjOJHor10PQM7T1rMln5okOHv2HTkEbj+aJmY0bgjBztzAB2BZ7KeL3npGIZdEtMxF85yuxHcQExPYFHinItXhnLSBXi7ILarzV7YV9cmmHzE+TfavkA6YJHFCW/yNmPslgCX4LM3xfU/t6Otj9bUNue6cc06h0DILcfQBIjgUOxrYTQHOunxNvn/S+qNQKP0NlbgIP5Ib5+7V9A2x4D8OkC2t0a3zNycgFtdxK5/QC8TMQ8/zbGhl5jsHnVfcBvyD7kH47tsOHdOoSDhKyL7QUPR4twEIg+bF/9POB4p46dwnjgMcK+DVOwPeGswUJX5d2LadsDPwhc903g/wb938sM788RYjRwB+HQ6G9hfi6xnMc6kSh+AN3OJJKtYBMWgM7ANwq4MEPd76WY3Zm7MXf0tJztrP/0DHV3G4VOAboFGQALvzYb34txTIp6J2ALu0VNt2aTbt3oYGe904FlUtTbrcgAIAMwgCddeAub7ng9NC9w1plHBk8PhmMnbCrnqfMIZ53djgwAMgADLII5YHlekNex+XuIqc768sgbhBddt8Efi+ABivU96CRkAJABaOf9WDxHz4syB3PYSiKUJCSG9JL8wm6NfxryBsmHyeqGDAAyAIPxTgVamOdl0nC5jGhPdyS0/zHMo9RbV1OG/gPIACADMJgR+KM9Dcj3GHqreAd8oeOySh/mfTqYHuDbpPMHuTjNTaoJMgDIAAzFOOzLT/My/pahI/YchEUhjv3yzwb+fYj2xgCXpKzrYbJHQu5m3AagKYsiwpgF7AHciqXa8nAg5uS1G+88C3EhFnFn1/662hfsJgKfCtT7e96ZZaqFOedcy7sDxSyPnR5MM49/Bgs6EwqVLmqKRgDDsx7pV/L/hD9FW0xX4CUwQ5FG1xcxX4WmEu04sKgnDwMfJF0w1V2AcwvRZngWxtYt0qQcn47pmiWNWOOQAWguk7FTlmlelI9RfDixdk7CDJWXRzHfgEYscsVABqDZPAlsCdyQ4prTSPeLnJUdsUxVXq4HtsKMgHAiAyBewRb4fuYsvxiWIbrIZ2dh7NCOt42zgN0xxyCRAhkAAXZE9lAso5OHzSkuoAfYNqAnWlEvlqHqMKwPQixAuwDZOAHfSvvzWLboocizC7AI8Jzj+j6G9hcQ2gUQOTgRuMhRbmVsUTA2+2FJakP8APh5Ae03ChkAMRSfx9J2hfhSAW0f7ijzAHBcAW03DhkAMRSzgKMc5TYD1orY7nJY2LcQx2CnG0VOZADEcFxO8om8AUJHh9OwB+Fn8k6KTSrSKGQARBI/dJTZNWJ7OzvKnBWxvcYjAyCSuIJwMpSYgTbeF/i8D3/mYeFABkAkMRe4JVBmOSz4aF4WxQ4pJXE/ltRDREIGQIS4x1Fm9QjtrEI4h8H9EdoRbcgAiBCeRB0xgm4s5SjTKTkia4MCgoh2lsd+idt/GDyp3fbEpgIDeA4LbYO58g6wvuOaxYFN2/7dwo40T3FcKxqGXIH9TARuJl5Yr7Llr5RzQrFbkCuwcLMWttDnyQfQqWyFGbBQXkAxCBkAcRLxMjhXyVjglKqV6DZkAMRuVSsQkV2AhapWopuQARB1+PUfYFFsoVA4kQEQosHIAAjRYGQAhGgwcgQSIf4BnN//98rAGqR7bsZh6ww9WNDO11Jc24sFJnmu/9/7Y/EIRSRkAESIR+mc7bUJyABERVMAIRqMDIAQDUYGQIgGIwMgRIORARCiwcgACNFgZACEaDDyAxAhdgLuwuL1LY859vSU1HYLmA1MBeYB40tqtzHIAIgQS/LOMFxlMwZYocL2a42mAEI0GBkAIRqMDIDoDRfpKurWn0KRARBPV61ARKYBM6tWopuQARDnVq1AROrUl1KQARCnANdVrUQEbgNOqFqJbkPbgGIesAfwOeAAYDXe+Vx4tuF6scy9eRhBOKLvNGBW27/7sGAhlwI/Bd7MqYOoEcoMFIf9CGfm+USEdvZwtPNvEdppAsoMJIQIIwMgRIORARCiwcgACNFgZACEaDAyAEI0GBkAIRqMDIAI4XHwifEcedJ653U2EoOQARAh5jrKLB+hHU/Qj9kR2hFtyACIENMdZdaL0I6nDo8uIgUyACLEo5j7aBJ7kf9Z2ttR5pGcbYhByACIELMwI5DEiuQ7D7APsHagzEvA8znaEEMgAyA8XO8o821g2Qx1Lw6c6ij3Z8IjEZESGQDh4beOMqsBFwOjU9S7GHAhsE4kHYRYgI4Dx6MHmEz4uG4LuAdYy1Hn6sBfnHU+i+UlED7cx4HrjAxAXA7G97K2sMAcZwBb8c5RZg+wGfAD4PUU9R1RaM/qhwwAMgCxGQHcjv+lHZDZ2AM5GVtQTHv9A+jXPy0yAMgAFMFGmGNQ2pc4q8wDtiylZ/VCEYFEITxAucPx/wD+VmJ7okZoBFAc36D4X//vl9ab+qEpADIARXM0djiniJf/xBL7UUdkAJABKIM9sFDdsV78GcD+pfagnmgNQJTCVcD6wNnky8nXB1wATAQuiaCXEBoBlMzawJnAK/h/8V8FfgFsUIG+dcY9AlBmIBGLx4DDga8A2wA7YC/2eGApzAloBubVNxkz0LdiDkGiImQARGzeBG7sF9HhaA1AiAYjAyBEg5EBEKLB5F0D2AjYCXgvsAowCpgK3AdcBDyRs/7BbI+lsZ6AnSVPYt3A58sBcwJl+rCFqwuA//IoKETdGYWt9oa2GnqxLZ5lIrV7HMV5nnnkUTRiEt1BYZ6AHwGeDlQ+WJ7ERgh52J5qX/4BOTtnP4Qog+gGYCRwVqDSJHkFeH+ODv0qR9sxZWaOPghRFlENwDjghkCFHpkKrJGxQ7dEaD+G5HF3FaIsop0FGAlcDewYQanlgCuBMRmu7RSHpZ6qFRAiJkkGoAc4F9g2YnsbAD+OWJ8QIgdJBuAI4MAC2jyEfEkkhBCRGG5ovSZwWsq6WsB8fAEcz8QOj7zsrDu0598LPDPMZ2Ow5BOeaYSCTwoBXI5/YexOLLXTEljI5zTHQWNJrJRRId2Vnlp0A7l2AbYKXNz+MhzPuxfGdgbectYRS17w35tEZABEHchlAK4IXDwgRybUcayzjlgSa39eBkDUgcwGYFVsHh964c4LKDCCt5M5liHzgrfEhwyAqAOZIwJ9AlgoUPkM4MuBMn1YKql7gRW8WuegLj76SwOHYRF1Fh30WQt4CPPIfChlvRsBhxI+ICXiMhPzfTkf+2HteDzJGo9JUd+HsBX6okcAsW5ulSOA9YDnAu23sIg7abZnP035azKSd8qN2CG6ssg0BViK8PD/TexXKg0nBeqMId1uAEZgR6i9/Z2LZdcNsQ42Par6BZCUm+gkkyvwZoSH/1dhL0kaTsT2/Vspr2sSmwEbpyg/Cviko9ynkW9Dp3AI4ferdNrXADZxlL8mQxu9mFfh2cCewMqkn7N/lno/yGtmuGatguoVxbAksCwdFo6+3QB4Hqg7crR1T79k4SDqbQBezHCNx/chS72iGF7HFtA7ivZf4tCcsgU8WKAuTeY2LNCKl14s5FqIC9HUq1P4HfG2q6PRbgCWDJR9jQ7sQE14C/gUMNtRtoXFJ/QY47uwRVhRLY9iqc47jvYpQGib4tUiFRHcgi0GHosdwR682zIX+DvwP8C1Ker9Jjb1OgLYkHK3o5pMHzZNuxI4FfsB7WjuJXnr4NnqVGNWgl4tun8bUIiYZNoGnBuodKm4OgohqqbdAEwPlB1LtnBeQogOpd0ADBdQox2Pr4AQoktoXwR8zFF+cyylc1oWwg4a7UW2qYQWroQomG0J+zPflKHeMdhhiCL9rLUIKMTbZDoMNBrzVkq6sBffIZR2zgvUKQMgRFwy7wLcFKh4BHBUCkUOweICCCE6kMEBQS4DdgtcczgW2//pQLkNgJ9kU6vRrIkFBBldtSIN4nXgdnzrYIMZCeyAjYwHx8d8GZv+dtwZgOFYEhsJhIbck0gOsz0aG2YUPfQfkDfzdx2odgqwGJZNuROSoDZR+rDpapoF550IB3GZhUV5KpNcQUF/Ebh4QM5k+FRZP3PWEUtiuSlXaQDyJF+VxJNQvMsBJgJzUtR7gLPeGOQyABPwh5D6HZZ0o53POa+NKd2eF2A1ygmdJglLH77YieemrDdtHMc8ZA4KCvA49gt+uKOhA7Bh0I+wuc57sJGBhzn4TxeOI3nKMYKwf8HYQB1QXcSWLahPYNNupwfYGngkUG7rlPWuhx3wShtRqxKWxiKXFGVlnyWdQ9BfC9Ql7a9DEezTAX2TvC2e3JWTU9bZx7tHy0WROz34K1g8uVYByvX21901K6Ml8BfiLWSKfMwHbnaUuz5lvXcSL4FNaZxMfOv69Qx61H0EAPCNDuifBL4X+qL6WQX/KPktYHtnvTHItQjYTg/wy0BlaeQass11m2AAerCcCzM7oJ9NlNnYj1Oa53N9ws/mk8CuKeqMgdsADLeN184I4AzgCzmVmow5uGSJjHIT5mxRNX0Uv1A4CgsRPrbgdsTbzMXyMoRiYgzHWsB43m08pmIvW9ku5A+TvJPxIBYdKhWHAW+Qzbo+ioUDz8rpGduNLS/n6IMQZRFtCjCYdYHrApUPlpuA5bI22M/6ZDc+MeXYnP0QogwKMwADbIuFpZ6d0MjLWArx0N67l/0D7RUtl0XqhxBFE3UNIIlRwFbYnHVlzGFnChaF9lrihxFfCUsSshbhufjewIoJn8/Hd/jjOeA0bOQjRDdQyBpAtzGJZCvYUSmahIhIbkcgIUQDkAEQosHEWqATcVkYW09p53VsJyQPo7AAFqJ4WiibVqV04xrAzti5gOGOBj8OfJF0i7cjgK8CTw1Tp6Q4mYsdmS87TXvh24DdQLcZgAOxnQnPg+U9cg3lBGWVJMs0LM5GWcgA0F0GYDT2kKR5qLZx1LtLyjolxckVge8qJtoF6DK2A5ZNec2+jjIfyaCLKIbd6cAENzIAnUGWbEmea5TQtXMYamG3cmQAOoPJGa55sKB6RTG8hE3zOgoZgM7gAdJFmJmOBaUMcTZdGIWmpvwIm393FDIAncMnsTMUIV7G5v+e4JIvYoeotB9dLb/CzpN0HHIE6hymAFtiL+y2WKKQdvqwIf0FpIss+2dgHSzQ5XrkPwAm/LyGrf5nyagtctJN24BCxETbgEKIMDIAQjQYGQAhGowMgBANRgZAiAYjAyBEg5EBEKLB1NkA9AY+X7QULYQon9CzveDdqLMBmBP4fEk68HimEDnpwcLnJ7HgfEidDYAn/XjoRgnRbSxNOO7jgvycdTYATzrKbF24FkKUiydS1OMDf9TZADzkKLNP4VoIUS57O8o8XLgWHcCqhOO0zQKWqUpBISIzFl9syQ2qUrBsHiF8M75fmXZCxOUEws/7izToSPi3CN+QN7Dz8kJ0M6tjI9rQ8/7jqhSsgnWwQBqhm/IQsERFOgqRl9HA3fjCk29WkY6VcRm+G/MnbA4lRDcxErgU3zN+UzUqVsvm+EYBLeA+YHw1agqRmpWA2/EnJ9mpGjWr5xz8N2k6lktvcEw+ITqFRYAjgKn4n+uLK9G0Q1gOW/303qwW8DRwErApDVo1FR3NxsA3gMdI9yy/gm2Lv4smPdg7Y/P8LM5PrwLPAc+jOPuiXMZiL+8qmJtvWlpYGPnLYyrVrRxFOsspkXS7fIMEFkr6sIbcjs2ftq9aESFK4HTga0kFmmYAAG7AhvQfpllTINEsTgGOrlqJTmZvbMW/6iGaRBJTZgIHIVyMB/5I9V+aRBJDrgfWRqRmbywxZ9VfoESSRf4BHIDIRQ+wK3ARMJfqv1SJJEneAC4B/oUccT20CDY0Y4APADtgZ6cnACsA47BdBCHKYj52ym8q8ATwIHAzlvx2Vt7K/x/A3y7k2fvYQQAAAABJRU5ErkJggg==</pre>
 </div>
-<div created="20200303060547766" modified="20210408140513294" tags="$:/tags/SideBar doc" title="ToDo" type="text/vnd.tiddlywiki">
-<pre>&lt;&lt;todolist-ui caption:"ToDo"&gt;&gt;</pre>
-</div>
 <div caption="Bibliography tools" created="20210404054333688" modified="20210411043620845" tags="doc working-bibtex" title="Tools for Generating Bibtex Entry" type="text/vnd.tiddlywiki">
 <pre>How to generate bibtex file to be imported in Refnotes
 
@@ -16884,13 +16877,10 @@ Contains good description to be added for Refnotes
 <div bibtex-author="Wikipedia" bibtex-entry-type="website" bibtex-month="Feb" bibtex-publisher="Wikimedia Foundation" bibtex-title="Wikipedia" bibtex-url="https://www.wikipedia.org" bibtex-year="2021" created="20210405122848373" modified="20210413145254212" tags="doc bibtex-entry" title="wikipedia_2021" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
-<div caption="working bibtex" created="20210410043339244" modified="20210410043449568" tags="$:/tags/SideBar" title="working/bibtex" type="text/vnd.tiddlywiki">
-<pre>&lt;&lt;list-links "[tag[working-bibtex]]"&gt;&gt;</pre>
-</div>
 <div bibtex-author="Jing Tang Xing" bibtex-booktitle="Fluid-Solid Interaction Dynamics" bibtex-chapter="5" bibtex-doi="https://doi.org/10.1016/B978-0-12-819352-5.00005-7" bibtex-editor="Jing Tang Xing" bibtex-entry-type="incollection" bibtex-isbn="978-0-12-819352-5" bibtex-keywords="Rayleigh–Ritz method, natural vibration of Sommerfeld system, water-spherical shell-damping layer acoustic system, Bessel functions, variational approximate solutions, beam-water system, dam-water interaction" bibtex-pages="145-188" bibtex-publisher="Academic Press" bibtex-title="Solutions of some linear fluid–solid interaction problems" bibtex-url="https://www.sciencedirect.com/science/article/pii/B9780128193525000057" bibtex-year="2019" created="20210411044553557" modified="20210413145254220" tags="bibtex-entry" title="xing-2019" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
-<div created="20210410194621974" modified="20210413144932143" title="xx$:/temp/refnotes/library/amadeo 1995 949" type="text/vnd.tiddlywiki">
+<div created="20210410194621974" modified="20210413185433659" title="xx$:/temp/refnotes/library/amadeo 1995 949" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
 <div created="20210410194847565" modified="20210410194943693" title="xx$:/temp/refnotes/library/Draft of 'New Tiddler 1'" type="text/vnd.tiddlywiki">
