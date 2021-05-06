@@ -23,7 +23,7 @@ type: text/vnd.tiddlywiki
 
 \define process-entries(title:"Process New Bibtex Entries")
 <$button> $title$
-<$list filter="[has[bibtex-title]]">
+<$list filter="[has[bibtex-title]!tag[bibtex-entry]]">
 <<tag-entries>>
 <<title-tolowercase>>
 </$list>
