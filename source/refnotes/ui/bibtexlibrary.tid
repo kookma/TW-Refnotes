@@ -1,7 +1,7 @@
 caption: Bibliography
 created: 20181220153648454
 description: This code adds the `bibtex-entry` tag to all tiddlers imported by `BibTeX Importer` plugin thus having a `bibtex-title` field.
-modified: 20210813154505837
+modified: 20210917161906108
 tags: $:/tags/SideBar
 title: $:/plugins/kookma/refnotes/ui/bibtexlibrary
 type: text/vnd.tiddlywiki
