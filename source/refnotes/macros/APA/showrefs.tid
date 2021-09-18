@@ -1,10 +1,11 @@
 created: 20190117195536649
-modified: 20210917161905863
+modified: 20210918174611753
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/apa/showrefs
 type: text/vnd.tiddlywiki
 
 \define showrefs(filter:"[<currentTiddler>]", title:"Empty", class:"ref-list", emptyMessage:"")
+\import $:/plugins/kookma/refnotes/macros/apa/authors
 <$vars leftDelimiter="<<ref ">
 <$list filter="[subfilter<__filter__>search:text:literal<leftDelimiter>limit[1]]" variable=null emptyMessage=<<__emptyMessage__>> ><!-- check to see if there is any citation -->
 <$reveal tag="div" type="nomatch" default="Empty" text=<<__title__>> >

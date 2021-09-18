@@ -1,10 +1,12 @@
 created: 20210407044450831
-modified: 20210917161905855
+modified: 20210918174611274
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/apa/ref
 type: text/vnd.tiddlywiki
 
 \define ref(tid)
+\import $:/plugins/kookma/refnotes/macros/apa/authors
+\whitespace trim
 <$set name="ref-tid" tiddler=<<__tid__>> field="title" emptyValue="RefNotFound">
 <div class="refnotes-tooltip refcls">
 <$reveal type="match" default=<<ref-tid>> text="RefNotFound">
@@ -12,19 +14,11 @@ type: text/vnd.tiddlywiki
 <div class="refnotes-tooltiptext ref-notfound"><b>Warning</b>: Reference Not Found.<br>Click to create it:<<create-notexisted-ref "$tid$">></div>
 </$reveal>
 <$reveal type="nomatch" default=<<ref-tid>> text="RefNotFound">
-<<show-authors>> (<$view tiddler=<<__tid__>> field="bibtex-year"/>)
+<<show-authors-in-citation>> (<$view tiddler=<<__tid__>> field="bibtex-year"/>)
 <div class="refnotes-tooltiptext">
 <$macrocall $name="displayref-onhover" refTid=<<ref-tid>> />
 </div>
 </$reveal>
 </div>
 </$set>
-\end
-
-\define show-authors()
-<$vars number-authors={{{[<__tid__>get[bibtex-author]split[ and ]count[]]}}}>
-<$list filter="[<number-authors>compare:number:gt[2]]" emptyMessage="""<$view tiddler=<<__tid__>> field="bibtex-author"/>""">
-<$text text={{{[<__tid__>get[bibtex-author]split[ and ]first[]addsuffix[, et al.]]}}} />
-</$list>
-</$vars>
 \end
