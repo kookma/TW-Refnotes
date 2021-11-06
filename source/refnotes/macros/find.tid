@@ -1,5 +1,5 @@
 created: 20181213121411187
-modified: 20210917161905907
+modified: 20211105070807510
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/find
 type: text/vnd.tiddlywiki
@@ -11,9 +11,9 @@ type: text/vnd.tiddlywiki
   stop=<<__end__>>
   output-macro=<<__output__>>
 >
-<$list variable="p1" filter="[<fulltext>splitbefore<start>]">
-<$list variable="p2" filter="[<fulltext>removeprefix<p1>]">
-<$list variable="p3" filter="[<p2>splitbefore<stop>removesuffix<stop>]">
+<$list variable=p1 filter="[<fulltext>splitbefore<start>]">
+<$list variable=p2 filter="[<fulltext>removeprefix<p1>]">
+<$list variable=p3 filter="[<p2>splitbefore<stop>removesuffix<stop>]">
 <$macrocall $name=<<output-macro>> p=<<p3>> />
 <$reveal type="match" text="all" default=<<__mode__>> >
 <$macrocall $name="find"

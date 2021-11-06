@@ -1,13 +1,26 @@
 created: 20210404111656614
-modified: 20210917161905932
+modified: 20211106193550015
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/showabbrs
 type: text/vnd.tiddlywiki
 
 \define showabbrs(filter:"[<currentTiddler>]", dtiddler:"Glossary", title:"Empty", emptyMessage:"")
-<$wikify name="term-indexes" text=<<find-all-items>> > 
-<$macrocall $name="abbr-list" dtiddler=<<__dtiddler__>> indexes=<<term-indexes>> title=<<__title__>> emptyMessage=<<__emptyMessage__>> />
+<$wikify name="indexes" text=<<find-all-items>> > 
+<$macrocall $name="abbr-list" indexes=<<indexes>> dtiddler=<<__dtiddler__>>  title=<<__title__>> emptyMessage=<<__emptyMessage__>> />
 </$wikify>
+\end
+
+\define patterndb() \[\[|\]\]
+\define pattern()  ('.*?'|".*?"|\S+)
+\define output-item(p)
+<$list filter="""[<__p__>search-replace:g:regexp<patterndb>,["]]""" variable=pars>
+<$list filter="""[<pars>trim[]!prefix[dict:]search-replace[term:],[]splitregexp<pattern>trim[]!is[blank]!prefix[dict:]first[]]""">
+<$text text=<<currentTiddler>>/>
+</$list>
+<$list filter="""[<pars>trim[]prefix[dict:]search-replace[term:],[]splitregexp<pattern>trim[]!is[blank]!prefix[dict:]last[]]""">
+<$text text=<<currentTiddler>>/>
+</$list>
+</$list>
 \end
 
 \define find-all-items()
@@ -16,26 +29,16 @@ type: text/vnd.tiddlywiki
 </$list>
 \end
 
-\define output-item(p)
-<$set name="items" value=<<__p__>> >
-<$set name="item" value={{{ [enlist<items>limit[1]] }}} >
-<$set name="item-noquotes" value={{{ [<item>removeprefix["]removesuffix["]] [<item>removeprefix[']removesuffix[']] ~[<item>] }}} emptyValue="NOT_FOUND">
-<<item-noquotes>>
-</$set>
-</$set>
-</$set>
-\end
 
-
-\define abbr-list(dtiddler, indexes, title:"Empty", emptyMessage)
-<$list filter="$indexes$ +[limit[1]]" variable=null emptyMessage=<<__emptyMessage__>> ><!-- check to see if there is any abbreviations -->
+\define abbr-list(dtiddler, indexes, title:"Empty", emptyMessage:"")
+<$list filter="[<indexes>limit[1]]" variable=null emptyMessage=<<__emptyMessage__>> ><!-- check to see if there is any abbreviations -->
 <$reveal tag="div" type="nomatch" default="Empty" text=<<__title__>> >
 <h2><$text text=<<__title__>> /></h2>
 </$reveal>
 <table class="refnotes-table-borderless">
-<$list filter="""$indexes$ +[sort[title]]""" variable="item">
+<$list filter="""[subfilter<__indexes__>]""" variable="item">
 <tr>
-<td class="refnotes-abbr-term"><<item>></td>
+<td class="refnotes-abbr-term"><$text text=<<item>> /></td>
 <td>
  <$set name="term" tiddler=<<__dtiddler__>>  index=<<item>>  emptyValue=<<term-not-found>> >
    <<term>>
