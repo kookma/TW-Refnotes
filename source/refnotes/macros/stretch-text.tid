@@ -1,10 +1,10 @@
 created: 20210407132815001
-modified: 20210917161905943
+modified: 20220519073631553
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/stretch-text
 type: text/vnd.tiddlywiki
 
-\define tTemp() xx$:/temp/refnotes/library/$(currentTiddler)$
+\define tTemp() $:/temp/refnotes/library/$(currentTiddler)$
 
 \define stretchText(text, title:"...")
 <$button class="tc-btn-invisible">$title$
