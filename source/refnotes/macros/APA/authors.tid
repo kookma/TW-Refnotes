@@ -1,31 +1,58 @@
 created: 20210918154536732
-modified: 20210918182843051
+modified: 20220526200757342
 tags: 
 title: $:/plugins/kookma/refnotes/macros/apa/authors
 type: text/vnd.tiddlywiki
 
-\define show-authors-in-citation()
+\define show-authors-in-citation(conjunction:"&")
 <!-- used in ref macro APA7 -->
-<$vars number-authors={{{[<__tid__>get[bibtex-author]split[ and ]count[]]}}}>
-<$list filter="[<number-authors>compare:number:gt[2]]" emptyMessage="""<$view tiddler=<<__tid__>> field="bibtex-author"/>""">
-<$text text={{{[<__tid__>get[bibtex-author]split[ and ]first[]addsuffix[, et al.]]}}} />
+<$let authorlist=      {{{ [<__tid__>get[bibtex-author]]     }}}
+      number-authors=  {{{ [<authorlist>split[ and ]count[]] }}}
+      one-two-authors= {{{ [<authorlist>split[ and ]first[2]] :map[split[ ]!is[blank]last[]] +[join[ $conjunction$ ]] }}}			
+      several-authors= {{{ [<authorlist>split[ and ]first[1]] :map[split[ ]!is[blank]last[]] +[addsuffix[ et al.]] }}}
+      >		
+<$list filter="[<number-authors>compare:number:gt[2]]" emptyMessage=<<one-two-authors>> >
+<<several-authors>>
 </$list>
-</$vars>
+</$let>
+\end
+
+\define authorName()
+<!-- display a single author name in form of Family, F.N. -->
+\whitespace trim
+<$let last={{{[<author>split[ ]last[]]}}}
+      initials={{{[<author>split[ ]butlast[]] :map[split[]first[]addsuffix[.]] +[join[ ]]}}}
+			dispname={{{[<last>addsuffix[, ]addsuffix<initials>]  }}}
+>
+<<dispname>>
+</$let>
 \end
 
 \define show-authors-in-references()
-<!-- display authors as comma separated list, removes "and" -->
 <!-- used in template -->
-\whitespace trim
-<$vars authorlist={{!!bibtex-author}} replace1=" and " replace2=",([^,]*)$" >
-<$vars authors={{{ [<authorlist>search-replace:g:regexp<replace1>,[, ]search-replace:g:regexp<replace2>,[, and $1]]}}} >
-<<authors>>
-</$vars>
-</$vars>
+<$let authorslist=     {{!!bibtex-author}}
+      number-authors=  {{{ [<authorslist>split[ and ]count[]] }}}
+      >		
+<$set name=authors filter="[<authorslist>split[ and ]trim[]]" >	
+<!-- single author ---------->
+<$list filter="[<number-authors>compare:integer:eq[1]]" variable=null>
+<$vars author={{{ [enlist<authors>last[]] }}}><<authorName>></$vars>
+</$list>
+<!-- multi authors ---------->
+<$list filter="[<number-authors>compare:integer:gt[1]]" variable=null>
+<$list filter="[enlist<authors>butlast[]]" variable=author>
+<<authorName>>,
+</$list>
+<$vars author={{{ [enlist<authors>last[]] }}}>& <<authorName>></$vars>
+</$list>
+</$set>
+</$let>			
 \end
 
+\define show-authors-in-references-old()
+<!-- used in template -->
+<$set name=authors filter="[{!!bibtex-author}split[ and ]trim[]]" >
+<$list filter="[enlist<authors>butlast[]]" variable=author>
+<<authorName>>, </$list><$list filter="[enlist<authors>last[]]" variable=author>& <<authorName>></$list></$set>
+\end
 
-<!--
-- These macros help to format the author list in citation and references in closer format to APA7
-- The author list in referenc list is not exactly wahat APA7 standard says! to be fixed
--->

@@ -1,5 +1,5 @@
 created: 20181220142502642
-modified: 20210917161906181
+modified: 20220525120325438
 tags: $:/tags/ViewTemplate
 title: $:/plugins/kookma/refnotes/viewtemplates/main
 type: text/vnd.tiddlywiki
@@ -9,7 +9,7 @@ type: text/vnd.tiddlywiki
 <$set name="bodyLookup" 
       filter="[all[tiddlers+shadows]tag[$:/tags/Refnotes/Template]contains:list<currentType>] +[limit[1]get[title]]"
 			value=<<bodyLookup>> 
-      emptyValue="$:/plugins/kookma/refnotes/viewtemplates/default">
+      emptyValue="$:/plugins/kookma/refnotes/viewtemplates/default">		
 <$transclude tiddler=<<bodyLookup>> field="text" mode="inline"/>
 </$set>
 </$vars>

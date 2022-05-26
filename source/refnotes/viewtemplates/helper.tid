@@ -1,8 +1,14 @@
 created: 20210405112132790
-modified: 20210917161906155
+modified: 20220525131406018
 tags: $:/tags/Refnotes/Template
 title: $:/plugins/kookma/refnotes/viewtemplates/helper
 type: text/vnd.tiddlywiki
+
+\define citedIn(refname)
+   <$vars pattern="""<<ref[\s\['"]*?$refname$['"\s\]]*?>>""" >
+   <$list filter="[all[tiddlers]search:text:regexp<pattern>sort[title]]" template="$:/core/ui/ListItemTemplate" emptyMessage="""//No tiddler has cited this reference//""" />
+   </$vars>
+\end
 
 \define display-bibtex-field()
 <div class="refnotes-bibtex-field">
@@ -23,3 +29,7 @@ type: text/vnd.tiddlywiki
 <<display-bibtex-field>>
 </$list>
 </details>
+
+<!-- show the list of tiddlers cited this reference -->
+; Cited in
+: <$macrocall $name=citedIn refname=<<currentTiddler>> /> 

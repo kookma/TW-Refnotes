@@ -1,11 +1,11 @@
 created: 20210405065852415
-modified: 20210917161905883
+modified: 20220526204137672
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/bibtex/process-entries
 type: text/vnd.tiddlywiki
 
-\define title-tolowercase()
-<$vars curTitle=<<currentTiddler>> newTitle={{{[<currentTiddler>lowercase[]]}}}>
+\define title-slugify()
+<$vars curTitle=<<currentTiddler>> newTitle={{{[<currentTiddler>slugify[]]}}}>
 <$list filter="[<curTitle>!match<newTitle>]" variable=null>
 <$action-sendmessage $message="tm-rename-tiddler" from=<<currentTiddler>> to=<<newTitle>> />
 </$list>
@@ -22,10 +22,23 @@ type: text/vnd.tiddlywiki
 \end
 
 \define process-entries(title:"Process New Bibtex Entries")
-<$button> $title$
+<$button>  $title$
+<$wikify name=chkDuplicates text=<<check-duplicates>> >
+<$action-confirm $message=<<chkDuplicates>> >
 <$list filter="[has[bibtex-title]]">
 <<tag-entries>>
-<<title-tolowercase>>
+<<title-slugify>>
 </$list>
+</$action-confirm>
+</$wikify>
 </$button>
+\end
+
+<!-- check duplicate reference tiddlers before slugifying -->
+\define check-duplicates()
+<$list filter="[has[bibtex-title]duplicateslugs[]limit[1]]" emptyMessage="There are no duplicate entries, do you want to process new entries?">
+The following tiddlers have duplicate slugs, so they will overwrite eachother, do you want to continue?
+
+<$list filter="[has[bibtex-title]duplicateslugs[]] +[join[, ]]" template="$:/core/ui/ListItemTemplate"/>
+</$list>
 \end
