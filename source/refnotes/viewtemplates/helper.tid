@@ -5,7 +5,7 @@ title: $:/plugins/kookma/refnotes/viewtemplates/helper
 type: text/vnd.tiddlywiki
 
 \define citedIn(refname)
-   <$vars pattern="""<<ref[\s\['"]*?$refname$['"\s\]]*?>>""" >
+   <$vars pattern="""<<ref[\s\['"]*?$refname$['"\s\]]*?.*>>""" >
    <$list filter="[all[tiddlers]search:text:regexp<pattern>sort[title]]" template="$:/core/ui/ListItemTemplate" emptyMessage="""//No tiddler has cited this reference//""" />
    </$vars>
 \end
