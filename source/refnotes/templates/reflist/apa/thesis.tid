@@ -1,0 +1,32 @@
+created: 20220603153022689
+list: thesis mastersthesis phdthesis
+modified: 20220603190548554
+tags: $:/tags/Refnotes/ReflistTemplate
+title: $:/plugins/kookma/refnotes/templates/reflist/apa/thesis
+type: text/vnd.tiddlywiki
+
+\define disp-thesis-type()
+\whitespace trim
+<$list filter="[<currentTiddler>get[bibtex-entry-type]]" variable=thesisType>
+<$text text={{{  
+               [<thesisType>match[mastersthesis]then[Master's thesis]]
+               [<thesisType>match[phdthesis]then[PhD thesis]]
+          :else[[Thesis]] }}} />
+</$list>
+\end
+
+
+<$wikify name=bibtexEntryTiddler text=<<reference>> >
+<$set name=currentTiddler tiddler=<<bibtexEntryTiddler>> field=title emptyValue="RefNotFound">
+<$reveal type="nomatch" default="RefNotFound" text=<<currentTiddler>> >
+<li><$link to=<<bibtexEntryTiddler>>><<show-authors-in-references>></$link> (<$text text={{{ [{!!bibtex-year}!is[blank]] :else[[n.d.]] }}}/>). <span style="font-style:italic;"><$text  text={{{ [{!!bibtex-title}lowercase[]sentencecase[]] }}} /></span>. <<disp-thesis-type>>, <$view field="bibtex-school"/>.</li>
+</$reveal>
+<$reveal type="match" default="RefNotFound" text=<<currentTiddler>> >
+<li>Reference <b><$text text=<<reference>>/></b> NOT FOUND. Check your input.</li>
+</$reveal>
+</$set></$wikify>
+
+<!-- Thesis, master and phd
+Author. (Year). //Title//. Phd Thesis, School. 
+Author. (Year). //Title//. Master's Thesis, School. 
+-->

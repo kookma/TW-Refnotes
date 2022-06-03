@@ -2,10 +2,10 @@
 .refnotes-bibtex-field{
 	display:table-row
 }
-.refnotes-bibtex-field span{
+.refnotes-bibtex-field > span{
 	display:table-cell
 }
-.refnotes-bibtex-field span:first-of-type{
+.refnotes-bibtex-field > span:first-of-type{
 	font-weight:bold;
 	padding-right:10px;
 	white-space: nowrap;

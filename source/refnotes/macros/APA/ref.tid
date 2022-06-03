@@ -1,5 +1,5 @@
 created: 20210407044450831
-modified: 20220526144915647
+modified: 20220603185720053
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/apa/ref
 type: text/vnd.tiddlywiki
@@ -25,23 +25,25 @@ type: text/vnd.tiddlywiki
 </$set>
 \end
 
+
+
 <!-- pranthetical in text citation -->
 \define pranthetical()
 <$wikify name=authors text=<<show-authors-in-citation>> >
-(<$text text={{{ [<authors>trim[]addsuffix[, ]] }}}/><$view tiddler=<<__tid__>> field="bibtex-year"/><$text text={{{[<__pages__>!is[blank]then<__pages__>addprefix[, ]]}}}/>)
+(<$text text={{{ [<authors>trim[]addsuffix[, ]] }}}/><$text text={{{ [<__tid__>get[bibtex-year]] :else[[n.d.]] }}}/><$text text={{{[<__pages__>!is[blank]then<__pages__>addprefix[, ]]}}}/>)
 </$wikify>
 \end
 
 <!-- narrative in text citation -->
 \define narrative()
 <$wikify name=authors text=<<show-authors-in-citation and>> >
-<$text text={{{ [<authors>trim[]addsuffix[ ]] }}}/>(<$view tiddler=<<__tid__>> field="bibtex-year"/><$text text={{{[<__pages__>!is[blank]then<__pages__>addprefix[, ]]}}}/>)
+<$text text={{{ [<authors>trim[]addsuffix[ ]] }}}/>(<$text text={{{ [<__tid__>get[bibtex-year]] :else[[n.d.]] }}}/><$text text={{{[<__pages__>!is[blank]then<__pages__>addprefix[, ]]}}}/>)
 </$wikify>
 \end
 
 <!-- multiwork pranthetical in text citation -->
 \define multiwork-pranthetical()
 <$wikify name=authors text=<<show-authors-in-citation>> >
-<$text text={{{ [<authors>trim[]addsuffix[, ]] }}}/><$view tiddler=<<__tid__>> field="bibtex-year"/><$text text={{{[<__pages__>!is[blank]then<__pages__>addprefix[, ]]}}}/>
+<$text text={{{ [<authors>trim[]addsuffix[, ]] }}}/><$text text={{{ [<__tid__>get[bibtex-year]] :else[[n.d.]] }}}/><$text text={{{[<__pages__>!is[blank]then<__pages__>addprefix[, ]]}}}/>
 </$wikify>
 \end

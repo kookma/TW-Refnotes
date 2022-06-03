@@ -1,6 +1,6 @@
 caption: Bibliography
 created: 20181220153648454
-modified: 20220526043658922
+modified: 20220602082029429
 tags: $:/tags/SideBar
 title: $:/plugins/kookma/refnotes/ui/bibtexlibrary
 type: text/vnd.tiddlywiki
@@ -23,12 +23,12 @@ type: text/vnd.tiddlywiki
 <!-- show hide entry details -->
 <div class="tc-search refnotes-library" style="margin:10px 0 0 20px;">
 Show and Hide Details: &nbsp;
-<$button class="tc-btn-invisible">{{$:/core/images/down-arrow}}
+<$button class="tc-btn-invisible" tooltip="show item details">{{$:/core/images/down-arrow}}
 <$list filter="[subfilter<searchFilter>]">
 <$action-setfield $tiddler=<<tmpTidDetails>> text=show />
 </$list>
 </$button>
-<$button class="tc-btn-invisible">{{$:/core/images/up-arrow}}
+<$button class="tc-btn-invisible" tooltip="hide item details">{{$:/core/images/up-arrow}}
 <$list filter="[subfilter<searchFilter>]">
 <$action-deletetiddler $tiddler=<<tmpTidDetails>> />
 </$list>

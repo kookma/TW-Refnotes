@@ -1,10 +1,10 @@
 created: 20141231095518178
-modified: 20220526043616938
+modified: 20220602080144009
 tags: 
 title: $:/plugins/kookma/refnotes/macros/search-ui
 type: text/vnd.tiddlywiki
 
-\define searchTid() $:/temp/search
+\define searchTid() $:/temp/refnotes/search
 \define bibtexFields() [!is[shadow]!is[system]has[bibtex-title]fields[]prefix[bibtex-]sort[]]
 \define mainFields() bibtex-title bibtex-author bibtex-year
 \define searchUi()

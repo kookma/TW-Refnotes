@@ -1,21 +1,27 @@
 created: 20181213121411187
-modified: 20210917161905873
+modified: 20220602041210656
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/bibtex/find-refs
 type: text/vnd.tiddlywiki
 
 \define find-refs(tid)
 <$vars regexp="(?g)<<ref .+?>>"
-regexp2='<<ref "*(.*?)"*>>'
-regexp3="^'(.*?)'"
-regexp4="\[\[(.*?)\]\]"
+regexp2='<<ref\s+(.*?)>>'
+regexp3='^"(.*?)"'
+regexp4="^'(.*?)'"
+regexp5="\[\[(.*?)\]\]"
+regexp6="^(.*?)\s"
 >
 <$list filter="[[$tid$]regexprefs:text<regexp>]">
 <$list filter="[all[current]regexprefs<regexp2>]">
-<$list filter="[all[current]regexprefs<regexp3>] ~[all[current]]" >
-<$list filter="[all[current]regexprefs<regexp4>] ~[all[current]]" variable=p>
+<$list filter="""
+     [all[current]regexprefs<regexp3>] 
+:else[all[current]regexprefs<regexp4>]
+:else[all[current]regexprefs<regexp5>]
+:else[all[current]regexprefs<regexp6>]
+:else[all[current]]
+""" variable=p >
 <<pwrapper>>
-</$list>
 </$list>
 </$list>
 </$list>

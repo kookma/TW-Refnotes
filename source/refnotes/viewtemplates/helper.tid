@@ -1,13 +1,15 @@
 created: 20210405112132790
-modified: 20220525131406018
+modified: 20220603134028039
 tags: $:/tags/Refnotes/Template
 title: $:/plugins/kookma/refnotes/viewtemplates/helper
 type: text/vnd.tiddlywiki
 
 \define citedIn(refname)
-   <$vars pattern="""<<ref[\s\['"]*?$refname$['"\s\]]*?.*>>""" >
-   <$list filter="[all[tiddlers]search:text:regexp<pattern>sort[title]]" template="$:/core/ui/ListItemTemplate" emptyMessage="""//No tiddler has cited this reference//""" />
-   </$vars>
+  <$vars pattern="""<<ref[\s\['"]*?$refname$['"\s\]]*?.*>>""" >
+   <$list filter="[all[tiddlers]search:text:regexp<pattern>sort[title]]" 
+          template="$:/core/ui/ListItemTemplate" 
+          emptyMessage="""//No tiddler has cited this reference//""" />
+  </$vars>
 \end
 
 \define display-bibtex-field()
@@ -17,6 +19,7 @@ type: text/vnd.tiddlywiki
 </div>
 \end
 
+<$let tv-wikilinks="no">
 <!-- display main bibtex fields -->
 <$list filter="[enlist<mainFields>]" variable=currentField>
 <<display-bibtex-field>>
@@ -29,6 +32,7 @@ type: text/vnd.tiddlywiki
 <<display-bibtex-field>>
 </$list>
 </details>
+</$let>
 
 <!-- show the list of tiddlers cited this reference -->
 ; Cited in

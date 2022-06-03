@@ -1,5 +1,5 @@
 created: 20210405065852415
-modified: 20220526204137672
+modified: 20220602134628455
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/bibtex/process-entries
 type: text/vnd.tiddlywiki
@@ -25,7 +25,7 @@ type: text/vnd.tiddlywiki
 <$button>  $title$
 <$wikify name=chkDuplicates text=<<check-duplicates>> >
 <$action-confirm $message=<<chkDuplicates>> >
-<$list filter="[has[bibtex-title]]">
+<$list filter="[has[bibtex-title]!tag[bibtex-entry]]">
 <<tag-entries>>
 <<title-slugify>>
 </$list>

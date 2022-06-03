@@ -1,5 +1,5 @@
 created: 20210918154536732
-modified: 20220526200757342
+modified: 20220603105801353
 tags: 
 title: $:/plugins/kookma/refnotes/macros/apa/authors
 type: text/vnd.tiddlywiki
@@ -8,24 +8,59 @@ type: text/vnd.tiddlywiki
 <!-- used in ref macro APA7 -->
 <$let authorlist=      {{{ [<__tid__>get[bibtex-author]]     }}}
       number-authors=  {{{ [<authorlist>split[ and ]count[]] }}}
-      one-two-authors= {{{ [<authorlist>split[ and ]first[2]] :map[split[ ]!is[blank]last[]] +[join[ $conjunction$ ]] }}}			
-      several-authors= {{{ [<authorlist>split[ and ]first[1]] :map[split[ ]!is[blank]last[]] +[addsuffix[ et al.]] }}}
-      >		
-<$list filter="[<number-authors>compare:number:gt[2]]" emptyMessage=<<one-two-authors>> >
-<<several-authors>>
+>
+<!-- single authors -->
+<$list filter="[<number-authors>compare:number:eq[1]]" variable=null>
+<$list filter="[<authorlist>split[ and ]first[]]" variable=author>
+<<authorName "LastName">>
+</$list>
+</$list>
+
+<!-- two authors -->
+<$list filter="[<number-authors>compare:number:eq[2]]" variable=null>
+<$list filter="[<authorlist>split[ and ]first[]]" variable=author><<authorName "LastName">> $conjunction$</$list>
+<$list filter="[<authorlist>split[ and ]last[]]"  variable=author><<authorName "LastName">></$list>
+</$list>
+
+<!-- multiple authors -->
+<$list filter="[<number-authors>compare:number:gt[2]]" variable=null>
+<$list filter="[<authorlist>split[ and ]first[]]" variable=author>
+<<authorName "LastName">> et al.
+</$list>
 </$list>
 </$let>
 \end
 
-\define authorName()
-<!-- display a single author name in form of Family, F.N. -->
-\whitespace trim
-<$let last={{{[<author>split[ ]last[]]}}}
-      initials={{{[<author>split[ ]butlast[]] :map[split[]first[]addsuffix[.]] +[join[ ]]}}}
-			dispname={{{[<last>addsuffix[, ]addsuffix<initials>]  }}}
->
-<<dispname>>
+
+\define parse-fullname()
+<!-- parse author full name and returns: first_middle_last name -->
+<$let pattern1="\s+([a-z][a-zA-Z]*?)\s+"
+author={{{ [<author>search[,]split[,]trim[]reverse[]] :else[<author>] +[join[ ]] }}}
+pname={{{
+[<author>search-replace:g:regexp<pattern1>,[ $1°]]
++[splitregexp[\s]trim[]]
++[search-replace:g:regexp[°],[ ]]
++[join[°_°]]
+}}}
+> <<pname>>
 </$let>
+\end
+
+
+<!-- Macros for reference list -->
+\define authorName(format:"")
+<!-- display a single author name in form of Family, F.N. 
+     it can also send the last name only (surname) used in show-authors-in-citation macro
+-->
+\whitespace trim
+<$wikify name=pname text=<<parse-fullname>> >
+<$let last=    {{{ [<pname>split[°_°]trim[]last[]]}}}
+      initials={{{ [<pname>split[°_°]trim[]butlast[]] :map[split[]first[]addsuffix[.]] +[join[ ]]}}}
+      dispname={{{ [<last>addsuffix[, ]addsuffix<initials>] }}}
+>
+<$list filter="[<__format__>!match[LastName]]" variable=null emptyMessage=<<last>>><<dispname>></$list>
+</$let>
+</$wikify>
 \end
 
 \define show-authors-in-references()
@@ -49,10 +84,4 @@ type: text/vnd.tiddlywiki
 </$let>			
 \end
 
-\define show-authors-in-references-old()
-<!-- used in template -->
-<$set name=authors filter="[{!!bibtex-author}split[ and ]trim[]]" >
-<$list filter="[enlist<authors>butlast[]]" variable=author>
-<<authorName>>, </$list><$list filter="[enlist<authors>last[]]" variable=author>& <<authorName>></$list></$set>
-\end
 

@@ -1,13 +1,13 @@
 created: 20210406035344521
-modified: 20220526135453908
+modified: 20220603190526260
 tags: $:/tags/Refnotes/ReflistTemplate
-title: $:/plugins/kookma/refnotes/templates/reflist/default
+title: $:/plugins/kookma/refnotes/templates/reflist/apa/default
 type: text/vnd.tiddlywiki
 
 <$wikify name=bibtexEntryTiddler text=<<reference>> >
 <$set name=currentTiddler tiddler=<<bibtexEntryTiddler>> field="title" emptyValue="RefNotFound">
 <$reveal type="nomatch" default="RefNotFound" text=<<currentTiddler>> >
-<li><<show-authors-in-references>> (<$view field="bibtex-year"/>). <$text  text={{{ [{!!bibtex-title}lowercase[]sentencecase[]] }}} />.</li>
+<li><$link to=<<bibtexEntryTiddler>>><<show-authors-in-references>></$link> (<$text text={{{ [{!!bibtex-year}!is[blank]] :else[[n.d.]] }}}/>). <$text  text={{{ [{!!bibtex-title}lowercase[]sentencecase[]] }}} />.</li>
 </$reveal>
 <$reveal type="match" default="RefNotFound" text=<<currentTiddler>> >
 <li>Reference <b><$text text=<<reference>>/></b> NOT FOUND. Check your input.</li>
