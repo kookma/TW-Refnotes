@@ -1,5 +1,5 @@
 created: 20210918154536732
-modified: 20220603105801353
+modified: 20220604115254375
 tags: 
 title: $:/plugins/kookma/refnotes/macros/apa/authors
 type: text/vnd.tiddlywiki
@@ -7,7 +7,7 @@ type: text/vnd.tiddlywiki
 \define show-authors-in-citation(conjunction:"&")
 <!-- used in ref macro APA7 -->
 <$let authorlist=      {{{ [<__tid__>get[bibtex-author]]     }}}
-      number-authors=  {{{ [<authorlist>split[ and ]count[]] }}}
+      number-authors=  {{{ [<authorlist>split[ and ]!is[blank]count[]] }}}
 >
 <!-- single authors -->
 <$list filter="[<number-authors>compare:number:eq[1]]" variable=null>
@@ -28,22 +28,32 @@ type: text/vnd.tiddlywiki
 <<authorName "LastName">> et al.
 </$list>
 </$list>
+
+<!-- no author, use three words of title -->
+<$list filter="[<number-authors>compare:number:eq[0]]" variable=null>
+<$text text={{{ [<__tid__>get[bibtex-title]split[ ]!is[blank]first[3]join[ ]] :else[<__tid__>]}}}/>
+</$list>
 </$let>
 \end
 
 
 \define parse-fullname()
-<!-- parse author full name and returns: first_middle_last name -->
-<$let pattern1="\s+([a-z][a-zA-Z]*?)\s+"
-author={{{ [<author>search[,]split[,]trim[]reverse[]] :else[<author>] +[join[ ]] }}}
-pname={{{
-[<author>search-replace:g:regexp<pattern1>,[ $1°]]
-+[splitregexp[\s]trim[]]
-+[search-replace:g:regexp[°],[ ]]
-+[join[°_°]]
-}}}
-> <<pname>>
+<!-- parse author full name and returns: last_name, first_name middle_name 
+     it handles nobiliary particle like: Lugwig von Beethoven
+-->
+<!-- return the same name if it is stored in BibTeX method 2: https://www.bibtex.com/f/author-field/ -->
+<$list filter="[<author>!search[,]]" emptyMessage=<<author>> variable=null>
+<$let 
+   pattern1="\s+([a-z][a-zA-Z]*?)\s+"
+   pname={{{
+            [<author>search-replace:g:regexp<pattern1>,[ $1°]]
+           +[splitregexp[\s]trim[]]
+           +[search-replace:g:regexp[°],[ ]]
+           +[join[°_°]]
+  }}}
+><$text text={{{ [<pname>split[°_°]!is[blank]last[]addsuffix[,]] [<pname>split[°_°]!is[blank]butlast[]] +[join[ ]] }}}/>
 </$let>
+</$list>
 \end
 
 
@@ -54,8 +64,8 @@ pname={{{
 -->
 \whitespace trim
 <$wikify name=pname text=<<parse-fullname>> >
-<$let last=    {{{ [<pname>split[°_°]trim[]last[]]}}}
-      initials={{{ [<pname>split[°_°]trim[]butlast[]] :map[split[]first[]addsuffix[.]] +[join[ ]]}}}
+<$let last=    {{{ [<pname>split[,]!is[blank]trim[]first[]]}}}
+      initials={{{ [<pname>split[,]!is[blank]trim[]butfirst[]split[ ]!is[blank]] :map[split[]!is[blank]first[]addsuffix[.]] +[join[ ]]}}}
       dispname={{{ [<last>addsuffix[, ]addsuffix<initials>] }}}
 >
 <$list filter="[<__format__>!match[LastName]]" variable=null emptyMessage=<<last>>><<dispname>></$list>
@@ -66,7 +76,7 @@ pname={{{
 \define show-authors-in-references()
 <!-- used in template -->
 <$let authorslist=     {{!!bibtex-author}}
-      number-authors=  {{{ [<authorslist>split[ and ]count[]] }}}
+      number-authors=  {{{ [<authorslist>split[ and ]!is[blank]count[]] }}}
       >		
 <$set name=authors filter="[<authorslist>split[ and ]trim[]]" >	
 <!-- single author ---------->
@@ -79,6 +89,10 @@ pname={{{
 <<authorName>>,
 </$list>
 <$vars author={{{ [enlist<authors>last[]] }}}>& <<authorName>></$vars>
+</$list>
+<!-- no author, use three words of title -->
+<$list filter="[<number-authors>compare:number:eq[0]]" variable=null>
+<$text text={{{ [{!!bibtex-title}split[ ]!is[blank]first[3]join[ ]] :else[[Unknown author]]}}}/>
 </$list>
 </$set>
 </$let>			

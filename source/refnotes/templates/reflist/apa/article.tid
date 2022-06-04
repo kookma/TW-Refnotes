@@ -1,6 +1,6 @@
 created: 20210406035737424
 list: article
-modified: 20220603190505314
+modified: 20220604082000162
 tags: $:/tags/Refnotes/ReflistTemplate
 title: $:/plugins/kookma/refnotes/templates/reflist/apa/article
 type: text/vnd.tiddlywiki
@@ -16,5 +16,5 @@ type: text/vnd.tiddlywiki
 </$set></$wikify>
 
 <!-- APA 7 
-Author. (Year). Title [Translated Title] [Type of Article] [Reviewed Item]|. Journal|, Volume|(Issue)|, Pages|, Article Article Number|.| `https://doi.org/`DOI (Reprint Edition) (Original Publication) (Errata)
+Author. (Year). Title [Translated Title] [Type of Article] [Reviewed Item]|. Journal|, Volume|(Issue)|, Pages|, Article Number|.| `https://doi.org/`DOI (Reprint Edition) (Original Publication) (Errata)
 -->

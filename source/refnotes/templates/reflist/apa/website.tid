@@ -1,14 +1,18 @@
 created: 20210406040657728
 list: website
-modified: 20220603190604922
+modified: 20220604125044677
 tags: $:/tags/Refnotes/ReflistTemplate
 title: $:/plugins/kookma/refnotes/templates/reflist/apa/website
 type: text/vnd.tiddlywiki
 
+\define retrieved-date()
+<$list filter="[<currentTiddler>has[bibtex-urldate]]" variable=null>Retrieved <$text text={{{ [{!!bibtex-urldate}search-replace:g[.],[]search-replace:g[-],[]] :map[format:date[MMM 0DD, YYYY]] }}}/></$list><$list filter="[<currentTiddler>!has[bibtex-urldate]has[bibtex-note]]" variable=null><$view field="bibtex-note"/></$list><$list filter="[<currentTiddler>!has[bibtex-urldate]!has[bibtex-note]]" variable=null>Retrieved n.d.</$list>
+\end
+
 <$wikify name=bibtexEntryTiddler text=<<reference>> >
 <$set name=currentTiddler tiddler=<<bibtexEntryTiddler>> field="title" emptyValue="RefNotFound">
 <$reveal type="nomatch" default="RefNotFound" text=<<currentTiddler>> >
-<li><$link to=<<bibtexEntryTiddler>>><$text  text={{{ [{!!bibtex-title}lowercase[]sentencecase[]] }}} /></$link>. (<$text text={{{ [{!!bibtex-year}!is[blank]] :else[[n.d.]] }}}/>). <a href={{!!bibtex-url}} target="_blank"><$text text={{!!bibtex-url}} /></a>.</li>
+<li><$link to=<<bibtexEntryTiddler>>><$text  text={{{ [{!!bibtex-title}lowercase[]sentencecase[]] }}} /></$link>. <<retrieved-date>>, <a href={{!!bibtex-url}} target="_blank"><$text text={{!!bibtex-url}} /></a>.</li>
 </$reveal>
 <$reveal type="match" default="RefNotFound" text=<<currentTiddler>> >
 <li>Reference <b><$text text=<<reference>>/></b> NOT FOUND. Check your input.</li>
