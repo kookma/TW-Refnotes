@@ -1,5 +1,5 @@
 created: 20210405065852415
-modified: 20220602134628455
+modified: 20220604205143425
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/bibtex/process-entries
 type: text/vnd.tiddlywiki
@@ -10,6 +10,12 @@ type: text/vnd.tiddlywiki
 <$action-sendmessage $message="tm-rename-tiddler" from=<<currentTiddler>> to=<<newTitle>> />
 </$list>
 </$vars>
+\end
+
+\define correct-doi()
+<$list filter="[<currentTiddler>has[bibtex-doi]get[bibtex-doi]!prefix[https://doi.org]]" variable=null>
+<$action-setfield $field="bibtex-doi" $value={{{ [{!!bibtex-doi}addprefix[https://doi.org/]] }}}/>
+</$list>
 \end
 
 \define tag-entries()
@@ -28,6 +34,7 @@ type: text/vnd.tiddlywiki
 <$list filter="[has[bibtex-title]!tag[bibtex-entry]]">
 <<tag-entries>>
 <<title-slugify>>
+<<correct-doi>>
 </$list>
 </$action-confirm>
 </$wikify>
