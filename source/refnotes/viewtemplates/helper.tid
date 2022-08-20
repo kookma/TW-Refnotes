@@ -20,7 +20,7 @@ type: text/vnd.tiddlywiki
 \end
 
 \define zotero-link(key) 
-<a target="_blank" href="zotero://select/items/0_$key$">Link to Zotero</a>
+<a target="_blank" href="zotero://select/library/items/$key$">Link to Zotero</a>
 \end
 
 <$let tv-wikilinks="no">
