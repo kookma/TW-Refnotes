@@ -4,6 +4,15 @@ tags: $:/tags/Refnotes/Template
 title: $:/plugins/kookma/refnotes/viewtemplates/helper
 type: text/vnd.tiddlywiki
 
+\define zotero-link(key) 
+<a target="_blank" class="tc-btn-invisible tc-tiddlylink" href="zotero://select/library/items/$key$">Select Item</a>
+\end
+
+\define zotero-pdflink(key) 
+<a target="_blank" class="tc-btn-invisible tc-tiddlylink" href="zotero://open-pdf/library/items/$key$">Open PDF</a>
+\end
+
+
 \define citedIn(refname)
   <$vars pattern="""<<ref[\s\['"]*?$refname$['"\s\]]*?.*>>""" >
    <$list filter="[all[tiddlers]search:text:regexp<pattern>sort[title]]" 
@@ -17,10 +26,6 @@ type: text/vnd.tiddlywiki
 <span><$text text={{{ [<currentField>removeprefix[bibtex-]titlecase[]] }}} /></span>
 <span><$transclude tiddler=<<currentTiddler>> field=<<currentField>> mode=inline /></span>
 </div>
-\end
-
-\define zotero-link(key) 
-<a target="_blank" href="zotero://select/library/items/$key$">Link to Zotero</a>
 \end
 
 <$let tv-wikilinks="no">
@@ -40,7 +45,16 @@ type: text/vnd.tiddlywiki
 
 <!-- Link to Zotero -->
 <$list filter="[<currentTiddler>has[bibtex-zotero-key]]" >
-    <$macrocall $name="zotero-link" key={{!!bibtex-zotero-key}} /> 
+
+<strong>Zotero</strong>
+
+<div>
+<$macrocall $name="zotero-link" key={{!!bibtex-zotero-key}} /> 
+
+  <$list filter="[<currentTiddler>has[bibtex-zotero-pdf-key]]" >
+     <$macrocall $name="zotero-pdflink" key={{!!bibtex-zotero-pdf-key}} /> 
+  </$list>
+</div>
 </$list>
 
 <!-- show the list of tiddlers cited this reference -->
