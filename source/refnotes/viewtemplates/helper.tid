@@ -4,6 +4,15 @@ tags: $:/tags/Refnotes/Template
 title: $:/plugins/kookma/refnotes/viewtemplates/helper
 type: text/vnd.tiddlywiki
 
+\define zotero-link(key) 
+<a target="_blank" class="tc-btn-invisible tc-tiddlylink" href="zotero://select/library/items/$key$">Select Item</a>
+\end
+
+\define zotero-pdflink(key) 
+<a target="_blank" class="tc-btn-invisible tc-tiddlylink" href="zotero://open-pdf/library/items/$key$">Open PDF</a>
+\end
+
+
 \define citedIn(refname)
   <$vars pattern="""<<ref[\s\['"]*?$refname$['"\s\]]*?.*>>""" >
    <$list filter="[all[tiddlers]search:text:regexp<pattern>sort[title]]" 
@@ -33,6 +42,20 @@ type: text/vnd.tiddlywiki
 </$list>
 </details>
 </$let>
+
+<!-- Link to Zotero -->
+<$list filter="[<currentTiddler>has[bibtex-zotero-key]]" >
+
+<strong>Zotero</strong>
+
+<div>
+<$macrocall $name="zotero-link" key={{!!bibtex-zotero-key}} /> 
+
+  <$list filter="[<currentTiddler>has[bibtex-zotero-pdf-key]]" >
+     <$macrocall $name="zotero-pdflink" key={{!!bibtex-zotero-pdf-key}} /> 
+  </$list>
+</div>
+</$list>
 
 <!-- show the list of tiddlers cited this reference -->
 ; Cited in
