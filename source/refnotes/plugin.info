@@ -3,7 +3,7 @@
     "name": "Refnotes",
     "description": "references, citations, footnotes and abbreviations in Tiddlywiki",
     "author": "Mohammad Rahmani",
-    "version": "1.8.3",
+    "version": "1.8.4",
     "core-version": ">=5.2.0",
     "source": "https://github.com/kookma/TW-Refnotes",
     "list": "readme license history",

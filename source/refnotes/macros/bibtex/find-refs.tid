@@ -1,33 +1,31 @@
-created: 20181213121411187
-modified: 20220602041210656
-tags: $:/tags/Macro
+code-body: yes
+tags: 
 title: $:/plugins/kookma/refnotes/macros/bibtex/find-refs
 type: text/vnd.tiddlywiki
 
-\define find-refs(tid)
-<$vars regexp="(?g)<<ref .+?>>"
-regexp2='<<ref\s+(.*?)>>'
+<!-- find-refs looks into thisTiddler text and finds all forms of <<ref .>> and <<cite .>> -->
+\define find-refs(thisTiddler)
+<$vars
+regexp="(?g)<<ref .+?>>"  regexpc ="(?g)<<cite .+?>>"
+regexp2='<<ref\s+(.*?)>>' regexp2c='<<cite\s+(.*?)>>'
 regexp3='^"(.*?)"'
 regexp4="^'(.*?)'"
 regexp5="\[\[(.*?)\]\]"
 regexp6="^(.*?)\s"
 >
-<$list filter="[[$tid$]regexprefs:text<regexp>]">
-<$list filter="[all[current]regexprefs<regexp2>]">
+<$list filter="[<__thisTiddler__>regexprefs:text<regexp>][<__thisTiddler__>regexprefs:text<regexpc>]">
+<$list filter="[all[current]regexprefs<regexp2>][all[current]regexprefs<regexp2c>]">
 <$list filter="""
      [all[current]regexprefs<regexp3>] 
 :else[all[current]regexprefs<regexp4>]
 :else[all[current]regexprefs<regexp5>]
 :else[all[current]regexprefs<regexp6>]
 :else[all[current]]
+:and[format:titlelist[]]
 """ variable=p >
-<<pwrapper>>
+<$text text=<<p>> />
 </$list>
 </$list>
 </$list>
 </$vars>
-\end
-
-\define pwrapper() 
-[[[[$(p)$]]]]
 \end

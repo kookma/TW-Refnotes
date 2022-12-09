@@ -1,0 +1,27 @@
+code-body: yes
+tags: 
+title: $:/plugins/kookma/refnotes/macros/apa/ref-helper
+type: text/vnd.tiddlywiki
+
+<!-- This tiddler contains helper macros used in $:/plugins/kookma/refnotes/macros/apa/ref -->
+
+<!-- parenthetical in text citation -->
+\define parenthetical()
+<$wikify name=authors text=<<show-authors-in-citation>> >
+(<$text text={{{ [<authors>trim[]addsuffix[, ]] }}}/><$text text={{{ [<__tid__>get[bibtex-year]] :else[[n.d.]] }}}/><$text text={{{[<__pages__>!is[blank]then<__pages__>addprefix[, ]]}}}/>)
+</$wikify>
+\end
+
+<!-- narrative in text citation -->
+\define narrative()
+<$wikify name=authors text=<<show-authors-in-citation and>> >
+<$text text={{{ [<authors>trim[]addsuffix[ ]] }}}/>(<$text text={{{ [<__tid__>get[bibtex-year]] :else[[n.d.]] }}}/><$text text={{{[<__pages__>!is[blank]then<__pages__>addprefix[, ]]}}}/>)
+</$wikify>
+\end
+
+<!-- multiwork parenthetical in text citation -->
+\define multiwork-parenthetical()
+<$wikify name=authors text=<<show-authors-in-citation>> >
+<$text text={{{ [<authors>trim[]addsuffix[, ]] }}}/><$text text={{{ [<__tid__>get[bibtex-year]] :else[[n.d.]] }}}/><$text text={{{[<__pages__>!is[blank]then<__pages__>addprefix[, ]]}}}/>
+</$wikify>
+\end

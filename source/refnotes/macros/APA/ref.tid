@@ -1,11 +1,10 @@
-created: 20210407044450831
-modified: 20220603185720053
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/apa/ref
 type: text/vnd.tiddlywiki
 
 \define ref(tid, type:"p", pages:"")
 \import $:/plugins/kookma/refnotes/macros/apa/authors
+\import $:/plugins/kookma/refnotes/macros/apa/ref-helper
 \whitespace trim
 <$set name="ref-tid" tiddler=<<__tid__>> field="title" emptyValue="RefNotFound">
 <div class="refnotes-tooltip refcls">
@@ -14,9 +13,9 @@ type: text/vnd.tiddlywiki
 <div class="refnotes-tooltiptext ref-notfound"><b>Warning</b>: Reference Not Found.<br>Click to create it:<<create-notexisted-ref "$tid$">></div>
 </$reveal>
 <$reveal type="nomatch" default=<<ref-tid>> text="RefNotFound">
-<$list filter="[[$type$]lowercase[]match[p]]" variable=null><<pranthetical>></$list>
+<$list filter="[[$type$]lowercase[]match[p]]" variable=null><<parenthetical>></$list>
 <$list filter="[[$type$]lowercase[]match[n]]" variable=null><<narrative>></$list>
-<$list filter="[[$type$]lowercase[]match[m]]" variable=null><<multiwork-pranthetical>></$list>
+<$list filter="[[$type$]lowercase[]match[m]]" variable=null><<multiwork-parenthetical>></$list>
 <div class="refnotes-tooltiptext">
 <$macrocall $name="displayref-onhover" refTid=<<ref-tid>> />
 </div>
@@ -25,25 +24,7 @@ type: text/vnd.tiddlywiki
 </$set>
 \end
 
+<!-- cite is a synonym for ref macro -->
+\define cite(tid, type:"p", pages:"") <$macrocall $name=ref tid=<<__tid__>> type=<<__type__>> pages=<<__pages__>> />
 
-
-<!-- pranthetical in text citation -->
-\define pranthetical()
-<$wikify name=authors text=<<show-authors-in-citation>> >
-(<$text text={{{ [<authors>trim[]addsuffix[, ]] }}}/><$text text={{{ [<__tid__>get[bibtex-year]] :else[[n.d.]] }}}/><$text text={{{[<__pages__>!is[blank]then<__pages__>addprefix[, ]]}}}/>)
-</$wikify>
-\end
-
-<!-- narrative in text citation -->
-\define narrative()
-<$wikify name=authors text=<<show-authors-in-citation and>> >
-<$text text={{{ [<authors>trim[]addsuffix[ ]] }}}/>(<$text text={{{ [<__tid__>get[bibtex-year]] :else[[n.d.]] }}}/><$text text={{{[<__pages__>!is[blank]then<__pages__>addprefix[, ]]}}}/>)
-</$wikify>
-\end
-
-<!-- multiwork pranthetical in text citation -->
-\define multiwork-pranthetical()
-<$wikify name=authors text=<<show-authors-in-citation>> >
-<$text text={{{ [<authors>trim[]addsuffix[, ]] }}}/><$text text={{{ [<__tid__>get[bibtex-year]] :else[[n.d.]] }}}/><$text text={{{[<__pages__>!is[blank]then<__pages__>addprefix[, ]]}}}/>
-</$wikify>
-\end
+<!-- for helper macros see $:/plugins/kookma/refnotes/macros/apa/ref-helper -->

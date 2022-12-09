@@ -1,38 +1,34 @@
-created: 20190117195536649
-modified: 20220604084614098
 tags: $:/tags/Macro
 title: $:/plugins/kookma/refnotes/macros/apa/showrefs
 type: text/vnd.tiddlywiki
 
-\define showrefs(filter:"[<currentTiddler>]", title:"Empty", class:"ref-list", emptyMessage:"")
+\define showrefs(filter:[<currentTiddler>] title:Empty class:ref-list emptyMessage)
 \import $:/plugins/kookma/refnotes/macros/apa/authors
-<$vars leftDelimiter="<<ref ">
-<$list filter="[subfilter<__filter__>search:text:literal<leftDelimiter>limit[1]]" variable=null emptyMessage=<<__emptyMessage__>> ><!-- check to see if there is any citation -->
-<$reveal tag="div" type="nomatch" default="Empty" text=<<__title__>> ><!-- display heading/title of Reference list if available-->
+\import $:/plugins/kookma/refnotes/macros/bibtex/find-refs
+<$let leftDelimiter="<<ref ">
+<$list filter="[subfilter<__filter__>search:text:literal<leftDelimiter>nth[]]"emptyMessage=<<__emptyMessage__>>variable=null>
+<$reveal tag=div type=nomatch text=<<__title__>>default=Empty>
 <h2>$title$</h2>
 </$reveal>
-<!-- populate all citations in given tiddler or list of tiddlers (given filter) -->
-<$wikify name="mylist" text="""
-<$list filter=<<__filter__>> >
-<$macrocall $name="find-refs" tid=<<currentTiddler>> />
+<!---->
+<$wikify text="
+<$list filter=<<__filter__>>>
+<$macrocall thisTiddler={{!!title}}$name=find-refs/>
 </$list>
-""">
-<!-- generate the reference list/bibliograpgy -->
+"name=mylist>
+<!---->
 <ol class="$class$">
-<$list filter="[enlist<mylist>trim[]sort[]]" variable="reference">
+<$list filter="[enlist<mylist>trim[]sort[]]"variable=reference>
 
-<$vars currentType={{{[<reference>get[bibtex-entry-type]lowercase[]] ~[[miscellaneous]]}}} >
-<$set name="bodyLookup" 
-      filter="[all[tiddlers+shadows]tag[$:/tags/Refnotes/ReflistTemplate]contains:list<currentType>] +[limit[1]get[title]]"
-      value=<<bodyLookup>> 
-      emptyValue="$:/plugins/kookma/refnotes/templates/reflist/apa/default">
-<$transclude tiddler=<<bodyLookup>> field="text" mode="inline"/>
+<$let currentType={{{[<reference>get[bibtex-entry-type]lowercase[]]~miscellaneous}}}>
+<$set filter="[[$:/tags/Refnotes/ReflistTemplate]tagging[]contains:list<currentType>nth[]get[title]]"value=<<bodyLookup>>emptyValue="$:/plugins/kookma/refnotes/templates/reflist/apa/default"name=bodyLookup>
+<$transclude tiddler=<<bodyLookup>>field=text mode=inline/>
 </$set>
-</$vars>
+</$let>
 
 </$list>
 </ol>
 </$wikify>
 </$list>
-</$vars>
+
 \end

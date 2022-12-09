@@ -1,0 +1,18 @@
+tags: $:/tags/Macro
+title: $:/plugins/kookma/refnotes/macros/apa/bibliography
+type: text/vnd.tiddlywiki
+
+\define bibliography(citedfilter:"[<currentTiddler>]", furtherfilter:"", class:"ref-list")
+\import $:/plugins/kookma/refnotes/macros/apa/bibliography-helper
+<!-- populate all citations in given tiddler or list of tiddlers (given scope through citedfilter) -->
+<$wikify name="works-cited" text=<<find-cited-works>> >
+<!-- generate the reference list/bibliograpgy -->
+<ol class="$class$">
+<$list filter="[enlist<works-cited>][subfilter<__furtherfilter__>]:and[sort[]]" variable="reference">
+<<display-single-reference>>
+</$list>
+</ol>
+</$wikify>
+\end
+
+<!-- see $:/plugins/kookma/refnotes/macros/apa/bibliography-helper for utility macros -->

@@ -1,0 +1,20 @@
+code-body: yes
+list: patent
+tags: $:/tags/Refnotes/ReflistTemplate
+title: $:/plugins/kookma/refnotes/templates/reflist/apa/patent
+type: text/vnd.tiddlywiki
+
+<$wikify name=bibtexEntryTiddler text=<<reference>> >
+<$set name=currentTiddler tiddler=<<bibtexEntryTiddler>> field=title emptyValue="RefNotFound">
+<$reveal type="nomatch" default="RefNotFound" text=<<currentTiddler>> >
+<li><$link to=<<bibtexEntryTiddler>>><<show-authors-in-references>></$link> (<$text text={{{ [{!!bibtex-year}!is[blank]] :else[[n.d.]] }}}/>). <span style="font-style:italic;"><$text text={{{ [{!!bibtex-title}lowercase[]sentencecase[]] }}} /></span>. (<$view field="bibtex-nationality"/> Patent No. <$view field="bibtex-number"/>). <a href={{!!bibtext-url}} target=_blank><$view field="bibtex-url"/></a></li>
+</$reveal>
+<$reveal type="match" default="RefNotFound" text=<<currentTiddler>> >
+<li>Reference <b><$text text=<<reference>>/></b> NOT FOUND. Check your input.</li>
+</$reveal>
+</$set></$wikify>
+
+<!-- APA 7 ?? check this, it has issues
+Author. (Year). Patent Title (Country patent No. patent number). Institution. URL
+
+-->
