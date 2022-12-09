@@ -5,8 +5,8 @@ type: text/vnd.tiddlywiki
 \define showrefs(filter:[<currentTiddler>] title:Empty class:ref-list emptyMessage)
 \import $:/plugins/kookma/refnotes/macros/apa/authors
 \import $:/plugins/kookma/refnotes/macros/bibtex/find-refs
-<$let leftDelimiter="<<ref ">
-<$list filter="[subfilter<__filter__>search:text:literal<leftDelimiter>nth[]]"emptyMessage=<<__emptyMessage__>>variable=null>
+<$let leftDelimiter1="<<ref " leftDelimiter2="<<cite ">
+<$list filter="[subfilter<__filter__>search:text:literal<leftDelimiter1>][subfilter<__filter__>search:text:literal<leftDelimiter2>]:and[limit[1]]" emptyMessage=<<__emptyMessage__>>variable=null>
 <$reveal tag=div type=nomatch text=<<__title__>>default=Empty>
 <h2>$title$</h2>
 </$reveal>
