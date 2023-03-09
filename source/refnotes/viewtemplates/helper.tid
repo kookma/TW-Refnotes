@@ -3,11 +3,13 @@ title: $:/plugins/kookma/refnotes/viewtemplates/helper
 type: text/vnd.tiddlywiki
 
 \define citedIn(refname)
-  <$vars pattern="""<<ref[\s\['"]*?$refname$['"\s\]]*?.*>>""" >
-   <$list filter="[all[tiddlers]search:text:regexp<pattern>sort[title]]" 
+  <$let pattern-ref ="""<<ref[\s\['"]*?$refname$['"\s\]]*?.*>>""" 
+        pattern-cite="""<<cite[\s\['"]*?$refname$['"\s\]]*?.*>>""" 	
+	>
+   <$list filter="[all[tiddlers]search:text:regexp<pattern-ref>sort[title]] [all[tiddlers]search:text:regexp<pattern-cite>sort[title]]" 
           template="$:/core/ui/ListItemTemplate" 
           emptyMessage="""//No tiddler has cited this reference//""" />
-  </$vars>
+  </$let>
 \end
 
 \define display-bibtex-field()
