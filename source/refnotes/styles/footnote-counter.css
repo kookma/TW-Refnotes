@@ -1,5 +1,6 @@
 /*automatic counter for fnote macro. The counter resets at the begining of each tiddler*/
-.tc-tiddler-frame {
+.tc-tiddler-frame,
+.tc-single-tiddler-window { /* to cover tiddler when it is opened in a new window */ 
   counter-reset: fnote-count;
 }
 .refnotes-footnote {
@@ -8,8 +9,8 @@
 .refnotes-footnote:after {
   content: counter(fnote-count);
   font-size:small;
- /* color:#0000ee;*/
   vertical-align: super;
   line-height: 1.5;
   margin-left: -0.1em;
+  /* color:#0000ee;*/
 }
